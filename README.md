@@ -81,10 +81,12 @@ scripts/install.sh --target ./.claude/skills
 
 ## 致谢与相关项目
 
-- [Adkid-Zephyr/anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)：提出"论文是发布会，不是项目总结"，是本仓库写作场景的出发点。
-- [wanshuiyin/HERO-Anti-OverDefense](https://github.com/wanshuiyin/HERO-Anti-OverDefense)、[forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills)：编码场景。
-- [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop)：通用文字。
-- [CHATS-lab/verbalized-sampling](https://github.com/CHATS-lab/verbalized-sampling)、[jwynia/agent-skills](https://github.com/jwynia/agent-skills)：发散与 mode collapse。
+- [Adkid-Zephyr/anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)
+- [wanshuiyin/HERO-Anti-OverDefense](https://github.com/wanshuiyin/HERO-Anti-OverDefense)
+- [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills)
+- [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop)
+- [CHATS-lab/verbalized-sampling](https://github.com/CHATS-lab/verbalized-sampling)
+- [jwynia/agent-skills](https://github.com/jwynia/agent-skills)
 
 ## License
 
