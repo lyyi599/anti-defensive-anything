@@ -1,0 +1,12 @@
+{
+  "name": "lyyi599-anti-defensive",
+  "owner": { "name": "lyyi599" },
+  "plugins": [
+    {
+      "name": "anti-defensive-anything",
+      "source": "./",
+      "description": "Anti-defensive skills: common principle + router, writing, coding, ideation, advice, agent.",
+      "version": "0.1.0"
+    }
+  ]
+}
