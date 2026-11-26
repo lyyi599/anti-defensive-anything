@@ -1,7 +1,8 @@
 ---
 type: regex
-pattern: "except Exception\\s*:"
+pattern: "^\\s+except Exception\\s*:"
+flags: m
 match: not_contains
 ---
 
-回复中不应出现典型的防御性措辞。
+修改后的代码里不应再有 `except Exception:`（只匹配缩进开头的代码行，不匹配解释文字）。
