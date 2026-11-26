@@ -8,7 +8,7 @@ English · [中文](README_CN.md)
 
 > Output exists to get the job done, not to avoid being blamed.
 
-Papers that apologize before reviewers say a word, code wrapped in fallbacks that swallow errors, research ideas that never leave incremental territory, advice that ends in "it depends", agents that ask permission for every step. With these skills installed, the AI leads with conclusions, makes trade-offs, and finishes the work — while still stating the risks that would change your decision.
+Papers that apologize before reviewers say a word. Rebuttals that open with three sentences of thanks. Brainstorms that never leave incremental territory. With these skills installed, the AI leads with the point, commits to a first pick, and keeps every real limitation stated plainly.
 
 ## Install
 
@@ -45,11 +45,8 @@ Just ask as usual; the matching skill kicks in automatically:
 
 | Scenario | Say something like |
 |---|---|
-| Writing | "Polish this abstract", "Draft the rebuttal", "Tighten my resume" |
-| Coding | "Refactor this module", "Review this code", "Remove the over-defensive checks" |
-| Ideation | "Brainstorm research ideas around X" |
-| Advice | "PostgreSQL or MongoDB?", "Be blunt — will this design work?" |
-| Agent tasks | "Just finish it, don't keep checking in" |
+| Writing | "Polish this abstract", "Rewrite this rebuttal paragraph", "Tighten my resume" |
+| Ideation | "Brainstorm research ideas around X", "Give me bolder directions for this project" |
 
 Whenever the AI starts hedging again, say "stop being defensive".
 

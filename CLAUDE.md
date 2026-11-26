@@ -7,7 +7,8 @@ The working language is **English**. Write skills, docs, scripts, commit message
 ## Structure
 
 - `skills/anti-defensive/` holds the core principles + routing table; scene skills live in `skills/anti-defensive-<scene>/`.
-- Every scene skill has five sections: one-line principle → defensive signals → rules → before/after → must keep. Start new scenes from `templates/SKILL.template.md`.
+- Current focus: the core skill, `writing`, and `ideation`. Parked skills and open work are in `TODO.md`.
+- Keep skills short and scannable; follow the section format in README_dev.md (principle → why → rules → quick checks → before/after → must keep).
 - Every scene skill must point to `../anti-defensive/SKILL.md` at the top; a new scene needs a routing-table row and at least one `<scene>-*` case in `evals/`.
 
 ## Rules for changes

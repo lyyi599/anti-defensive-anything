@@ -17,7 +17,7 @@ jobs:
       - name: Install script smoke test
         run: |
           scripts/install.sh --target "$RUNNER_TEMP/skills"
-          scripts/install.sh --target "$RUNNER_TEMP/partial" coding
+          scripts/install.sh --target "$RUNNER_TEMP/partial" writing
           test -f "$RUNNER_TEMP/partial/anti-defensive/SKILL.md"
-          test -f "$RUNNER_TEMP/partial/anti-defensive-coding/SKILL.md"
+          test -f "$RUNNER_TEMP/partial/anti-defensive-writing/SKILL.md"
           ! scripts/install.sh --target "$RUNNER_TEMP/bad" no-such-scene

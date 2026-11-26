@@ -8,7 +8,7 @@
     {
       "name": "anti-defensive-anything",
       "source": "./",
-      "description": "Anti-defensive skills: common principle + router, writing, coding, ideation, advice, agent.",
+      "description": "Anti-defensive skills: core rules + router, writing, ideation.",
       "version": "0.2.0"
     }
   ]

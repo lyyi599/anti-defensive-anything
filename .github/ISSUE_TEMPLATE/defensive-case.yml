@@ -6,7 +6,7 @@ body:
     id: scene
     attributes:
       label: 场景 / Scenario
-      options: [writing, coding, ideation, advice, agent, 其他 / other]
+      options: [writing, ideation, 其他 / other]
     validations:
       required: true
   - type: textarea

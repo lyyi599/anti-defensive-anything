@@ -7,6 +7,12 @@ Rule changes change model behavior, so every entry says **which scene and what b
 ## [Unreleased]
 
 ### Changed
+- **Focus on three core components**: `anti-defensive` (core), `anti-defensive-writing`, `anti-defensive-ideation`. All three were rewritten to a short, scannable format modeled on lean community skills: principle → why → numbered rules → quick checks → before/after → must keep (core 34 lines, writing 58, ideation 68). Ideation gained a calibration list of the idea clusters models default to; writing gained a quick-check list of concrete phrases to remove and a "return" contract.
+
+### Removed
+- `anti-defensive-coding`, `anti-defensive-advice`, `anti-defensive-agent` and their eval cases are parked (see `TODO.md`; restorable from commit `ddf2af7`): evals could not show an effect over the no-plugin baseline.
+- `templates/` and the "new scene" issue template.
+
 - **Working language is now English.** Skills, `README.md`, developer docs, scripts, and grader rubrics are written in English. Chinese is an additional entry point: `README_CN.md` and `prompts/quick-prompt-zh.md` are generated from the English sources by `scripts/translate.py`. Eval case prompts stay in Chinese to check that the English skills work for Chinese-speaking users. Skill trigger words remain bilingual.
 - All skills switched to English. Same rules, examples, and boundaries as the Chinese versions. A side-by-side eval on the same cases: Chinese skills triggered 18/23 with 55/55 grader passes; English skills 14/21 with 50/51 — no meaningful difference.
 

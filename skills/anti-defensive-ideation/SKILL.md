@@ -1,64 +1,68 @@
 ---
 name: anti-defensive-ideation
-description: Remove defensiveness from ideation. Use for brainstorming, research topic selection, paper ideas, solution concepts, product ideas, creative divergence. Avoid offering only incremental improvements or consensus ideas, self-censoring while generating, and attaching "but this may be challenging" to every idea. Triggers: brainstorm, research ideas, novel ideas, think bigger, new directions, 想 idea、头脑风暴、选题、有什么新思路、研究方向。
+description: Produces bold, non-obvious ideas instead of safe incremental ones. Rules out the consensus first, generates without self-censoring, judges in a separate pass, and commits to one first pick. Use for brainstorming, research ideas, paper topics, solution concepts, and product ideas. Triggers: brainstorm, research ideas, new directions, novel ideas, think bigger, 想 idea、头脑风暴、选题、研究方向、有什么新思路.
 ---
 
 # Anti-Defensive Ideation
 
-Prerequisite: follow the core principles and honesty floor of `anti-defensive` (sibling directory `../anti-defensive/SKILL.md`).
+Apply the rules and honesty floor in `../anti-defensive/SKILL.md` first.
 
-> **Separate generating from judging. Don't censor while generating; don't go easy while judging.**
+> Generate without censoring. Judge without mercy. Then pick one.
 
-The roots of defensive ideation: the model tends to output the "most typical" answer (mode collapse), and it limits itself by feasibility while still generating, so all that's left are safe incremental improvements.
+Left alone, a model returns the most typical ideas and filters them by feasibility while it generates. The list collapses into safe increments that everyone in the field has already thought of, each with a "but this may be challenging" attached.
 
-## Defensive signals
+## Calibration
 
-- The listed ideas are the ones anyone in the field would think of first
-- All of them are "add module Y on top of X" or "apply method A to dataset B"
-- Every idea is followed by "but may face data/compute/feasibility challenges"
-- Several ideas are the same idea reworded
-- Not a single idea makes you think "this is a bit crazy"
+Default ideas cluster around:
+
+- adding a module, loss, or attention variant to an existing model
+- scaling up: more data, a bigger model, a longer context
+- applying method A to dataset or domain B
+- combining two popular methods
+- wrapping it in an LLM agent, RAG, or RL fine-tuning
+
+These aren't banned. But if every idea is one of these, you haven't started.
 
 ## Process
 
-**1. Rule out the consensus first.**
-List the 3–5 most obvious ideas for this problem, mark them as the "consensus zone", and don't propose them or their variants afterwards.
+1. **Name the consensus.** List the 3–5 ideas anyone in the field would propose first. Don't propose them or their variants afterwards.
+2. **Generate across four tiers.** No risks or feasibility at this stage.
 
-**2. Generate in tiers (no risks or feasibility at this stage).**
-Each round covers at least four tiers:
+   | Tier | Meaning |
+   |---|---|
+   | Incremental | a clear improvement on the current route (at most a quarter of the list) |
+   | Cross-domain | a mechanism or tool borrowed from another field |
+   | Contrarian | drops an assumption the field takes for granted |
+   | Moonshot | if it worked, it would change how the field works |
 
-| Tier | Meaning |
-|---|---|
-| Incremental | a clear improvement on the existing route |
-| Cross-domain | a mechanism, tool, or perspective borrowed from another field |
-| Contrarian | challenges one assumption the field takes for granted |
-| Moonshot | if it worked, it would change how this field works |
+3. **Push, then pull back.** Take promising ideas to their most radical version first, then back off to something testable. Don't start from the safe version.
+4. **Judge in a separate pass.** Score value and feasibility separately, so "hard to build" doesn't drag down "matters if built". Risks belong here, not in the list.
+5. **Commit.** Rank the ideas, name one first pick and why, and say what result would change your mind.
 
-The incremental tier is at most a quarter.
-
-**3. Amplify first, then converge.**
-For promising ideas, push them to their most radical version first, then pull back to a doable version. Don't start from the safe version.
-
-**4. Judge (a separate stage).**
-Score value and feasibility **separately**; "not sure it can be built" must not drag down the score of "it matters if built". Then give a clear ranking and a first choice.
-
-## How to write each idea
+Write each idea as:
 
 ```
-Name: one sentence
-Core insight: the non-obvious bet it makes
-Why now: what changed to make it feasible
-Minimal test: the smallest experiment you can run within a week
+Name: one line
+Bet: the non-obvious claim it relies on
+Why now: what changed that makes it feasible
+First test: the smallest experiment you can run within a week
 ```
+
+## Quick checks
+
+- Would three people in the field independently write the same list? Then diverge further.
+- Is any idea a rewording of another?
+- Does every idea carry "but may be challenging"? Move the risks to the judging pass.
+- Is there exactly one first pick?
 
 ## Before / after
 
 | Defensive | Anti-defensive |
 |---|---|
-| You could try adding an attention mechanism to the existing model to improve performance, but note that the compute cost may increase. | Contrarian: remove attention. Bet that the task's dependencies are local; replace it with convolutions + explicit long-range memory. Minimal test: compare on an LRA subset. |
-| Here are several possible directions, each with pros and cons; choose based on your situation. | First choice #3: highest value, and the minimal test takes only two days. #1 is safe but has a low ceiling. |
+| You could add an attention mechanism to the existing model to improve performance, though compute cost may increase. | Contrarian: remove attention. Bet: the task's dependencies are local, so convolutions plus an explicit long-range memory suffice. First test: compare on an LRA subset. |
+| Here are several possible directions, each with pros and cons; the choice depends on your situation. | First pick: #3. Highest value, and its first test takes two days. #1 is safe but has a low ceiling. |
 
 ## Must keep
 
-- In the judging stage, state fatal risks truthfully (ethics, hard physical/mathematical constraints that make it fundamentally infeasible).
-- Don't fabricate "existing work" or citations to argue novelty; if unsure whether someone has done it, say you're unsure.
+- In the judging pass, state fatal risks plainly: ethics, or physical or mathematical limits that make an idea infeasible.
+- Don't invent prior work or citations to argue novelty. If you're not sure whether it has been done, say so.
