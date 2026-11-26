@@ -6,7 +6,7 @@
   2. 场景 skill 引用了通用原则 ../anti-defensive/SKILL.md
   3. 路由表与场景 skill 目录一一对应
   4. plugin.json 与 marketplace.json 的版本号一致，CHANGELOG 有该版本条目
-  5. 中英文同步：README 使用表行数、通用提示词规则条数
+  5. 译文是否过时（只警告，不失败）：见 scripts/translate.py
   6. 每个场景至少有一个评估用例（evals/<场景>-*/）
 """
 import json
@@ -61,25 +61,15 @@ if not changelog.exists() or not re.search(rf"^## \[?{re.escape(str(version))}\]
     errors.append(f"CHANGELOG.md 缺少当前版本 {version} 的条目")
 
 
-# 5. zh/en sync
-def table_rows(path: Path, heading: str) -> int:
-    text = path.read_text(encoding="utf-8")
-    section = text.split(heading, 1)[1] if heading in text else ""
-    section = section.split("\n## ", 1)[0]
-    return sum(1 for l in section.splitlines() if l.startswith("|") and not re.match(r"^\|[\s:-]+\|", l)) - 1
+# 5. translations: stale translations are a warning, not an error
+sys.path.insert(0, str(REPO / "scripts"))
+from translate import PAIRS, REASON, status  # noqa: E402
 
-
-def numbered(path: Path) -> int:
-    return len(re.findall(r"^\d+\.\s", path.read_text(encoding="utf-8"), re.M))
-
-
-pairs = [
-    ("README 使用表行数", table_rows(REPO / "README.md", "## 使用"), table_rows(REPO / "README_EN.md", "## Usage")),
-    ("通用提示词规则条数", numbered(REPO / "prompts/quick-prompt.md"), numbered(REPO / "prompts/quick-prompt-en.md")),
-]
-for what, zh, en in pairs:
-    if zh != en:
-        errors.append(f"中英文不同步: {what} 中文={zh} 英文={en}")
+warnings = []
+for src, dst, _ in PAIRS:
+    state, _, _ = status(src, dst)
+    if state != "ok":
+        warnings.append(f"译文 {dst} 需要重新生成：{REASON[state]}（源文件 {src}）。运行 python3 scripts/translate.py")
 
 # 6. evals
 evals = REPO / "evals"
@@ -88,7 +78,9 @@ for name in sorted(domains):
     if not any(evals.glob(f"{short}-*/prompt.md")):
         errors.append(f"场景 {short} 没有评估用例（evals/{short}-*/prompt.md）")
 
+for w in warnings:
+    print(f"⚠ {w}")
 if errors:
     print("\n".join(f"✗ {e}" for e in errors))
     sys.exit(1)
-print(f"✓ {len(skill_dirs)} 个 skill，路由 {len(routed)} 个场景，版本 {version}，中英文同步，评估用例齐全")
+print(f"✓ {len(skill_dirs)} 个 skill，路由 {len(routed)} 个场景，版本 {version}，评估用例齐全")

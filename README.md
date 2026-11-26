@@ -37,6 +37,8 @@ scripts/install.sh --target ~/.codex/skills   # 不加 --target 则装到 ~/.cla
 
 **网页版对话 / 不支持 skill 的工具**：把 [`prompts/quick-prompt.md`](prompts/quick-prompt.md) 粘贴到对话开头。
 
+> skill 正文用中文写成，对英文请求同样有效（与完整翻译的英文版 skill 做过对比评估，没有体现出英文版更好）；回复语言跟随你提问的语言。
+
 ## 使用
 
 装好后正常提需求即可，会按场景自动生效：

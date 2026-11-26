@@ -6,6 +6,13 @@
 
 ## [Unreleased]
 
+### Added
+- `scripts/translate.py`：英文文档（`README_EN.md`、`prompts/quick-prompt-en.md`）改为从中文源文件生成，译文首行记录源文件哈希；过时的译文由 `validate.py` 警告，不阻塞 CI。
+
+### Changed
+- `validate.py`：去掉逐项比对中英文 README 行数的硬性检查，改为译文过时警告。
+- README 注明 skill 正文为中文、对英文请求同样有效。依据：同一批评估用例上，中文 skill 触发 18/23、质量评审 55/55；完整翻译的英文 skill 触发 14/21、质量评审 50/51，没有体现出英文更好，因此 skill 保持中文单语。
+
 ## [0.2.0] - 2026-11-26
 
 ### Changed

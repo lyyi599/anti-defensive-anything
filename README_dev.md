@@ -12,10 +12,11 @@ skills/
 ├── anti-defensive-ideation/   # 头脑风暴、研究 idea
 ├── anti-defensive-advice/     # 选型、决策、评审、反馈
 └── anti-defensive-agent/      # agent 执行：过度请示、留退路的汇报
-prompts/quick-prompt.md        # 无 skill 环境下的通用提示词（英文版 quick-prompt-en.md）
+prompts/quick-prompt.md        # 无 skill 环境下的通用提示词（英文版 quick-prompt-en.md 为生成文件）
 templates/SKILL.template.md    # 新增场景的模板
 scripts/install.sh             # 安装
 scripts/validate.py            # 校验 frontmatter 与路由表
+scripts/translate.py           # 从中文源文件生成英文译文
 evals/                         # 每个场景的评估用例（claude plugin eval）
 .claude-plugin/                # Claude Code 插件与 marketplace 清单
 .github/                       # CI 与 issue 模板
@@ -51,7 +52,7 @@ scripts/install.sh --link --target ./.claude/skills   # 项目级
 1. 复制 `templates/SKILL.template.md` 到 `skills/anti-defensive-<domain>/SKILL.md` 并填写。
 2. 在 `skills/anti-defensive/SKILL.md` 的路由表里加一行。
 3. 在 `evals/` 下加至少一个 `<domain>-*` 用例（见下文"评估"）。
-4. 如有必要，在 `prompts/quick-prompt.md` 和 `quick-prompt-en.md` 里补一条精简规则，在 `README.md` 和 `README_EN.md` 的使用表里补一行示例。
+4. 如有必要，在 `prompts/quick-prompt.md` 里补一条精简规则，在 `README.md` 的使用表里补一行示例，然后运行 `python3 scripts/translate.py` 生成英文版。
 5. 运行校验和该场景的评估。
 
 每个场景 skill 都是同一套结构：**一句话原则 → 防御信号 → 规则 → 对照表 → 必须保留**。最后一节最重要：它划定了哪些防御是对的。
@@ -95,6 +96,21 @@ claude plugin eval .                        # 全量
 - 开放式输出（如 ideation）的评审：一条评审只判断一件事，并写明哪些情况"不算违反"；评审模型用 `--judge-model sonnet`，默认的 haiku 在长中文输出上投票容易分裂。
 
 新增用例时，用户反馈的 issue（"防御性案例"模板）可以直接改写成 `prompt.md` + `criteria.md`。
+
+## 多语言
+
+- **skill 正文只用一种语言（中文）。** 回复语言跟随用户提问的语言，与 skill 的语言无关；中英文 skill 的对比评估也没有差别。只有 `description` 里的触发词需要中英双语。
+- **给人读的文档：中文是源，英文是生成的。** `README_EN.md` 和 `prompts/quick-prompt-en.md` 第一行记录了源文件和源文件哈希，不要手改。
+
+```bash
+python3 scripts/translate.py --check   # 哪些译文过时（不调用模型）
+python3 scripts/translate.py           # 重新生成过时的译文（需要 claude CLI，默认用 sonnet）
+python3 scripts/translate.py --force   # 全部重新生成
+```
+
+- 译文过时只是警告：`validate.py` 和 CI 会提示，但不会失败。翻译可以晚一点跟上，不会挡住改动。
+- 新增需要翻译的文件：在 `scripts/translate.py` 的 `PAIRS` 里加一行（源文件、译文、目标语言）。加新语言也是同样做法。
+- 文件间链接（如 `README.md` → `README_EN.md`）由脚本处理；机械替换写在脚本里，不交给模型。
 
 ## Logo
 
