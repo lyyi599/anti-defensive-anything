@@ -12,6 +12,7 @@
 
 - **诚实底线不能被削弱。** 反防御 ≠ 夸大：会改变决策的风险、未验证项、不知道的事必须保留。任何改动如果让 skill 更容易夸大、隐瞒或伪造，就是错的。
 - 改规则 = 改模型行为。改 `skills/` 后，跑相关场景的 eval，在 `CHANGELOG.md` 的 `[Unreleased]` 下写清"哪个场景、行为上有什么变化"。
+- **skill 里不能出现评估用例的内容**（数据集名、数字、原句）。对照表的例子要换领域，否则评估测的是照抄，不是规则。
 - 中英文同步：`README.md` ↔ `README_EN.md`，`prompts/quick-prompt.md` ↔ `prompts/quick-prompt-en.md`。改一边必须改另一边。
 - skill 正文目前只维护中文版。
 - 发版：同步修改 `plugin.json` 和 `marketplace.json` 的 `version`，把 `[Unreleased]` 改成版本号和日期。

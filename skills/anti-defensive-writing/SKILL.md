@@ -39,7 +39,10 @@ description: 去除写作中的防御性表达。用于论文（摘要、引言�
 
 ## 分场景要点
 
-- **Rebuttal**：先给结论（"我们补充了实验，结果支持原主张"），再给证据。认同审稿人的合理点用一句话，然后说做了什么，不要连续三段 "We thank / We agree / We apologize"。
+- **Rebuttal**：
+  - 第一句就是回应本身：做了什么、结果是什么。**不以 "We thank / We appreciate / We apologize" 开头**；感谢最多半句，放在句中或省略。
+  - 新证据只支持它实际覆盖的范围：在同领域新数据集上的提升，只能说"在第三个同领域数据集上也成立"，不能说"在未见数据/新领域上也成立"。审稿人问的范围没被覆盖，就照实说没覆盖。
+  - 认同审稿人的合理点用一句话，然后说改了什么、在哪（节号/表号）。
 - **简历/求职信**：动词 + 结果 + 数字。删掉"参与了""协助"等稀释贡献的词，如果你确实是主导者。
 - **申请书/BP**：风险章节写"风险 → 应对"，不写成自我否定清单。
 - **邮件**：第一句写你要什么；删掉"不好意思打扰""如果方便的话不知道能否"。
@@ -51,6 +54,7 @@ description: 去除写作中的防御性表达。用于论文（摘要、引言�
 | 虽然本方法在两个数据集上提高了准确率，但必须承认，我们尚未测试跨领域泛化，因此应谨慎看待。 | 本方法在两个同领域数据集上提高了准确率；跨领域泛化尚未评估。 |
 | 我们的方法在速度上仍明显落后于 B。 | 本方法以 1.8× 推理时间换取 6.1 点精度提升。 |
 | We apologize for the confusion and thank the reviewer for pointing this out. We acknowledge that... | We clarified this in Sec. 3.2 (new Eq. 4). |
+| We thank the reviewer for this valuable suggestion. Results on ADE20K (+2.4 mIoU) demonstrate that our method generalizes to new domains. | On ADE20K our method gains +2.4 mIoU, so the improvement holds on a second scene-parsing benchmark. Transfer to other domains (e.g., medical images) is untested; we note this in Sec. 6. |
 | 参与了推荐系统的优化工作，取得了一定效果。 | 重写召回模块，线上 CTR +4.2%。 |
 
 ## 必须保留
