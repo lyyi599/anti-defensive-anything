@@ -99,6 +99,14 @@ claude plugin eval .                        # everything
 - Single runs are noisy; judge a change on at least the default 3 runs.
 - For open-ended output (e.g. ideation): one rubric per question, and spell out what does **not** count as a violation; use `--judge-model sonnet`, since the default haiku splits votes on long outputs.
 
+Lessons from auditing the rubrics (each of these once produced a fake or inflated effect):
+
+- **One question per grader.** A combined "all of 1–4" rubric hides which item failed and lets one strict item decide the result.
+- **Read the baseline's failing outputs before trusting a gap.** If the baseline output is actually fine, the rubric is wrong, not the model.
+- **Write out what does not count as a violation**, especially for borderline phrasing (e.g. "the gain holds beyond the original datasets" is an accurate in-domain claim, not overclaiming).
+- **Don't encode style as a hard count** (e.g. "in one sentence"); test the intent.
+- **Split results by whether the skill fired.** A skill that didn't trigger behaves like the baseline; that is a trigger problem, not a rule problem.
+
 Issues filed with the "defensive case" template can be turned directly into `prompt.md` + `criteria.md`.
 
 ## Languages

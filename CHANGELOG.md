@@ -10,10 +10,15 @@ Rule changes change model behavior, so every entry says **which scene and what b
 - **Working language is now English.** Skills, `README.md`, developer docs, scripts, and grader rubrics are written in English. Chinese is an additional entry point: `README_CN.md` and `prompts/quick-prompt-zh.md` are generated from the English sources by `scripts/translate.py`. Eval case prompts stay in Chinese to check that the English skills work for Chinese-speaking users. Skill trigger words remain bilingual.
 - All skills switched to English. Same rules, examples, and boundaries as the Chinese versions. A side-by-side eval on the same cases: Chinese skills triggered 18/23 with 55/55 grader passes; English skills 14/21 with 50/51 — no meaningful difference.
 
+- `writing`: the before/after example that resembled the `writing-rebuttal` eval (two in-domain datasets, cross-domain untested) was replaced with an unrelated one (compiler pass on ARM boards vs. GPUs), and the rebuttal rule no longer echoes the eval's wording. Triggers also cover "rewrite / revise / reviewer response / 改写 / 回复审稿意见".
+- Evals: `writing-rebuttal` and `agent-report` rubrics split into single-question graders, judged with sonnet. A "no invention" grader for writing was removed after it failed both arms on outputs that invented nothing.
+
 ### Added
 - `scripts/translate.py`: generates translations from a source file and records the source hash on the first line; `validate.py` warns on stale translations without failing CI.
 
 ### Known issues
+- `writing` (re-audit of 0.2.0): with single-question graders, the robust effect is **opening with the response instead of thanks** — passed every run where the skill fired, 0/9 without the plugin. "Honest scope" (keep the untested-cross-domain caveat, don't overclaim) showed only a small, noisy difference (2/3 vs 1/3 in the last round); the judge splits on borderline phrasing. The skill fired in 12 of 14 runs across rounds; when it didn't fire, output matched the baseline.
+- `agent` (correction to 0.2.0): split graders show almost no difference (0.93 vs 0.87). Both arms disclose the failing test and the missing staging check; both sometimes open with a heading and the root cause instead of "fixed". The 0.2.0 gap (1.00 vs 0.67) came from the combined rubric.
 - `advice` (correction to 0.2.0): the `advice-db-choice` rubric required stating the flip condition "in one sentence". Relaxed to its intent — briefly state when the recommendation would change, instead of comparing every case — the no-plugin baseline also scores 3/3. The 0.2.0 gap (1.00 vs 0.50) came mainly from that strict rubric item, not from the plugin making the model lead with a recommendation. Like `coding`, this case currently can't show the skill's effect; it stays as a regression guard.
 
 ### Removed

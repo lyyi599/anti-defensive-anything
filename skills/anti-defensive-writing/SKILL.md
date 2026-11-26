@@ -1,6 +1,6 @@
 ---
 name: anti-defensive-writing
-description: Remove defensive language from writing. Use for writing and polishing papers (abstract, introduction, experiments, conclusion), rebuttals / reviewer responses, technical reports, resumes, cover letters, grant/project proposals, business plans, and formal emails. Triggers: polish paper, tighten prose, rebuttal, cover letter, write abstract, edit resume, too weak, too modest, 改论文、润色、写摘要、写 rebuttal、改简历、写申请书、语气太弱、太谦虚。
+description: Remove defensive language from writing. Use for writing and polishing papers (abstract, introduction, experiments, conclusion), rebuttals / reviewer responses, technical reports, resumes, cover letters, grant/project proposals, business plans, and formal emails. Use it whenever the user asks to write, rewrite, revise, or polish any of these. Triggers: rewrite this paragraph, revise, polish paper, tighten prose, rebuttal, reviewer response, response to reviewers, cover letter, write abstract, edit resume, too weak, too modest, 改写、修改这段、改论文、润色、写摘要、写 rebuttal、回复审稿意见、审稿回复、改简历、写申请书、语气太弱、太谦虚。
 ---
 
 # Anti-Defensive Writing
@@ -41,7 +41,7 @@ Prerequisite: follow the core principles and honesty floor of `anti-defensive` (
 
 - **Rebuttal**:
   - The first sentence is the response itself: what was done and what the result is. **Don't open with "We thank / We appreciate / We apologize"**; thanks are at most half a sentence, mid-sentence, or omitted.
-  - New evidence supports only the range it actually covers: a gain on another in-domain dataset only lets you say "it also holds on a third in-domain dataset", not "it holds on unseen data / new domains". If the range the reviewer asked about isn't covered, say plainly that it isn't.
+  - New evidence supports only the range it actually covers: more results from the same setting support claims about that setting, not "generalizes to unseen data / new domains". If the range the reviewer asked about isn't covered, say plainly that it isn't.
   - Agree with a reviewer's valid point in one sentence, then say what changed and where (section/table number).
 - **Resume / cover letter**: verb + result + number. Delete contribution-diluting words like "participated in" or "assisted" if you actually led the work.
 - **Proposals / business plans**: write the risk section as "risk → mitigation", not as a list of self-negations.
@@ -51,7 +51,7 @@ Prerequisite: follow the core principles and honesty floor of `anti-defensive` (
 
 | Defensive | Anti-defensive |
 |---|---|
-| Although our method improves accuracy on two datasets, we must admit that we have not tested cross-domain generalization, so the results should be viewed with caution. | Our method improves accuracy on two in-domain datasets; cross-domain generalization has not been evaluated. |
+| Although our compiler pass cuts latency on two ARM boards, we must admit that we have not measured it on GPUs, so the results should be viewed with caution. | Our compiler pass cuts latency on two ARM boards; GPU performance has not been measured. |
 | Our method is still clearly behind B in speed. | Our method trades 1.8× inference time for a 6.1-point accuracy gain. |
 | We apologize for the confusion and thank the reviewer for pointing this out. We acknowledge that... | We clarified this in Sec. 3.2 (new Eq. 4). |
 | We thank the reviewer for this valuable suggestion. Results on ADE20K (+2.4 mIoU) demonstrate that our method generalizes to new domains. | On ADE20K our method gains +2.4 mIoU, so the improvement holds on a second scene-parsing benchmark. Transfer to other domains (e.g., medical images) is untested; we note this in Sec. 6. |
