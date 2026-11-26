@@ -12,7 +12,7 @@ skills/
 ├── anti-defensive-ideation/   # 头脑风暴、研究 idea
 ├── anti-defensive-advice/     # 选型、决策、评审、反馈
 └── anti-defensive-agent/      # agent 执行：过度请示、留退路的汇报
-prompts/quick-prompt.md        # 无 skill 环境下的通用提示词
+prompts/quick-prompt.md        # 无 skill 环境下的通用提示词（英文版 quick-prompt-en.md）
 templates/SKILL.template.md    # 新增场景的模板
 scripts/install.sh             # 安装
 scripts/validate.py            # 校验 frontmatter 与路由表
@@ -45,7 +45,7 @@ scripts/install.sh --link --target ./.claude/skills   # 项目级
 
 1. 复制 `templates/SKILL.template.md` 到 `skills/anti-defensive-<domain>/SKILL.md` 并填写。
 2. 在 `skills/anti-defensive/SKILL.md` 的路由表里加一行。
-3. 如有必要，在 `prompts/quick-prompt.md` 里补一条精简规则，在 `README.md` 的使用表里补一行示例。
+3. 如有必要，在 `prompts/quick-prompt.md` 和 `quick-prompt-en.md` 里补一条精简规则，在 `README.md` 和 `README_EN.md` 的使用表里补一行示例。
 4. 运行校验（见下）。
 
 每个场景 skill 都是同一套结构：**一句话原则 → 防御信号 → 规则 → 对照表 → 必须保留**。最后一节最重要：它划定了哪些防御是对的。

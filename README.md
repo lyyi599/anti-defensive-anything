@@ -1,5 +1,7 @@
 # Anti-Defensive Anything
 
+中文 · [English](README_EN.md)
+
 **让 AI 停止"为了不出错而写"——一套轻量、零依赖的 Agent Skills。**
 
 > 产出是为了完成目标，不是为了不被指责。
