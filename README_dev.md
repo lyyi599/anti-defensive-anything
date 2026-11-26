@@ -17,6 +17,7 @@ templates/SKILL.template.md    # 新增场景的模板
 scripts/install.sh             # 安装
 scripts/validate.py            # 校验 frontmatter 与路由表
 .claude-plugin/                # Claude Code 插件与 marketplace 清单
+assets/                        # logo.svg（源文件）、logo.png（透明底）、icon.png（插件图标）
 ```
 
 ## 工作方式

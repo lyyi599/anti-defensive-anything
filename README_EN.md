@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.svg" width="180" alt="Anti-Defensive Anything logo"></p>
+
 # Anti-Defensive Anything
 
 [中文](README.md) · English
