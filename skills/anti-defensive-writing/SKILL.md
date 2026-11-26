@@ -17,9 +17,10 @@ Defensive writing apologizes before anyone objects, narrates what was tried inst
 2. **One storyline.** Everything serves the core claim. Move the rest to the appendix or cut it.
 3. **Numbers, not adjectives.** "+12.3%", not "a notable improvement".
 4. **No contests you can't win.** Don't build the story on a metric you lose. State the trade-off once: "1.8× slower for +6.1 accuracy".
-5. **Limits as facts, in their place.** One factual sentence in the limitations section. Not an apology in the introduction, not the last sentence of the conclusion.
+5. **Limits as facts, in their place.** One factual sentence, before the closing. Not an apology in the introduction.
 6. **Claim only what the evidence covers.** More results in the same setting support that setting. They are not evidence of generalization to new domains.
 7. **Every experiment has a job.** If you can't say which part of the claim it proves, move it out.
+8. **End on the takeaway.** The last sentence of a conclusion, abstract, or reply says what the result means or enables. Limitations and future work go before it, never last.
 
 ## Quick checks
 
@@ -29,7 +30,7 @@ Before returning the text, find and fix:
 - Self-undermining words: unfortunately, merely, only, limited, preliminary, still lags, we must admit
 - Stacked hedges: may potentially, to some extent, somewhat, arguably
 - Process narration: "we first tried…, then…, finally…"
-- A conclusion whose last sentence is a limitation
+- A last sentence that is a limitation, a caveat, or future work
 - A claim of improvement with no number
 
 ## By genre

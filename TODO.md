@@ -19,6 +19,7 @@ git checkout ddf2af7 -- skills/anti-defensive-<scene> evals/<case>
 ## Core components
 
 - [x] Ideation: read the baseline's failing outputs. The gap is real: the baseline's ideas (RL agents that look for evidence, streaming memory, diagnostic benchmarks, synthetic data) are exactly the field's current consensus, while the plugin arm adds ideas the baseline never produced (codec-domain tokens, event-segmentation memory, writing the video into weights). Caveat: the baseline's "diagnostic benchmark" idea matches an idea the plugin arm labeled "contrarian", and only the labeled one passed, so the judge may be swayed by tier labels.
-- [ ] Ideation: make the bold-idea grader ignore self-applied labels ("contrarian", "moonshot") and judge the idea itself.
-- [ ] Writing: add a second eval case outside rebuttals (abstract or conclusion), where self-undermining language is common.
-- [ ] Writing: the "honest scope" grader still splits on borderline phrasing; tighten it or replace it with a regex for the untested-limitation sentence.
+- [x] Ideation: the bold-idea grader now ignores self-applied labels and treats directions the field already pursues as incremental. Result unchanged: 3/3 vs 0/3.
+- [x] Writing: added `writing-conclusion` (ASR conclusion paragraph). It exposed a real gap: the skill let conclusions end on future work (1/3). Added rule 8 "End on the takeaway"; now 3/3 vs 0/3.
+- [x] Writing: replaced the LLM "honest scope" grader with two regexes (`keeps-limitation`, `no-overclaim`), tested on every past output. Rebuttal: keeps-limitation 3/3 vs 1/3, no-overclaim 3/3 vs 2/3; the baseline failures were read and are real (dropped the "untested" fact, or claimed transfer to new domains).
+- [ ] Writing: the baseline already strips obvious defensive phrases ("unfortunately", "we must admit") in the conclusion case, so `no-defensive-phrases` doesn't discriminate there. Consider an abstract or introduction case with subtler hedging.

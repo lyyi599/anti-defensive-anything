@@ -9,6 +9,12 @@ Rule changes change model behavior, so every entry says **which scene and what b
 ### Changed
 - **Focus on three core components**: `anti-defensive` (core), `anti-defensive-writing`, `anti-defensive-ideation`. All three were rewritten to a short, scannable format modeled on lean community skills: principle → why → numbered rules → quick checks → before/after → must keep (core 34 lines, writing 58, ideation 68). Ideation gained a calibration list of the idea clusters models default to; writing gained a quick-check list of concrete phrases to remove and a "return" contract.
 
+- `writing`: new rule 8, "End on the takeaway": the last sentence of a conclusion, abstract, or reply says what the result means; limitations and future work go before it. The new `writing-conclusion` case showed the skill still let conclusions end on future work (1/3); after the rule, 3/3 (baseline 0/3).
+- Evals: `writing-rebuttal`'s LLM "honest scope" grader was replaced by two regexes (`keeps-limitation`, `no-overclaim`) tested on all past outputs; the ideation `bold-idea` grader now ignores self-applied labels such as "contrarian" or "moonshot". Current results, 3 runs each vs no-plugin baseline: rebuttal opens with the response 3/3 vs 0/3, keeps the untested limitation 3/3 vs 1/3, no overclaim 3/3 vs 2/3; conclusion ends on the takeaway 3/3 vs 0/3; ideation has a non-incremental idea 3/3 vs 0/3.
+
+### Added
+- `writing-conclusion` eval case.
+
 ### Removed
 - `anti-defensive-coding`, `anti-defensive-advice`, `anti-defensive-agent` and their eval cases are parked (see `TODO.md`; restorable from commit `ddf2af7`): evals could not show an effect over the no-plugin baseline.
 - `templates/` and the "new scene" issue template.

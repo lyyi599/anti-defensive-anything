@@ -82,6 +82,8 @@ Lessons from auditing the rubrics. Each of these once produced a fake or inflate
 - **Test the intent, not a hard count** (e.g. not "in one sentence").
 - **Split results by whether the skill fired.** A skill that didn't trigger behaves like the baseline; that's a trigger problem, not a rule problem.
 - **Judge with sonnet.** The default haiku splits votes on long outputs.
+- **Must-keep graders are guards, not discriminators.** Both arms should pass them; if the baseline fails one, check whether the regex is too narrow before believing it. Test every regex against real past outputs (honest and dishonest wordings) before running.
+- **Judges are swayed by self-applied labels** ("contrarian", "moonshot"). Tell the judge to ignore them and judge the content.
 
 Issues filed with the "defensive case" template can be turned directly into a `prompt.md` and graders.
 
