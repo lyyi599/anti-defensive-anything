@@ -92,6 +92,7 @@ claude plugin eval .                        # 全量
 - 大小写不敏感用 `flags: i`，不要写 `(?i)`（评估器用 JavaScript 正则）。
 - 结果在 `evals/results/`（已 gitignore）。默认会把报告发布到 claude.ai，不想发布就加 `--no-publish`。
 - 同一用例单次结果波动不小，判断改动效果时至少跑默认的 3 次。
+- 开放式输出（如 ideation）的评审：一条评审只判断一件事，并写明哪些情况"不算违反"；评审模型用 `--judge-model sonnet`，默认的 haiku 在长中文输出上投票容易分裂。
 
 新增用例时，用户反馈的 issue（"防御性案例"模板）可以直接改写成 `prompt.md` + `criteria.md`。
 

@@ -1,6 +1,6 @@
 ---
 name: anti-defensive-coding
-description: 去除代码中的防御性编程。用于编写、修改、重构、审查代码时，避免或清理多余的 try/except、静默 fallback、重复的空值/类型检查、未被要求的兼容层和配置项、"以防万一"的抽象。触发：写代码、重构、code review、清理代码、过度防御、吞异常、over-engineering、defensive programming、remove fallbacks、simplify。
+description: 去除代码中的防御性编程。只要要写或改代码就使用：写函数、实现功能、加功能、写脚本、修 bug、重构、审查代码。避免或清理多余的 try/except、静默 fallback（如对已知存在的 key 用 .get(k, default)）、重复的空值/类型检查、未被要求的兼容层和配置项、"以防万一"的抽象。触发：写一个函数、帮我实现、加个功能、写个脚本、修一下这个 bug、重构、code review、清理代码、过度防御、吞异常、write a function、implement、add a feature、fix this bug、refactor、over-engineering、defensive programming、remove fallbacks、simplify。
 ---
 
 # Anti-Defensive Coding
