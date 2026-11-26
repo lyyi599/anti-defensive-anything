@@ -41,7 +41,8 @@ Rules:
 - Keep the Markdown structure exactly: headings, tables, lists, HTML tags, <details> blocks, code blocks.
 - Do not translate code blocks, commands, file paths, URLs, or identifiers in backticks.
 - Rewrite these relative links to their {lang} counterparts: {links}.
-- A language switcher line (e.g. "English · [中文](README_CN.md)") must link back to the source: the current language becomes plain text and the source language becomes a link to the source file (e.g. "[English](README.md) · 中文").
+- In-page anchor links (href="#..." or (#...)) must point to the translated headings: use the GitHub anchor of the translated heading text (lowercase, spaces to hyphens, punctuation dropped; Chinese characters stay as-is).
+- A language switcher (e.g. "English · [中文](README_CN.md)" or the same with <a href>) must link back to the source: the current language becomes plain text and the source language becomes a link to the source file (e.g. "[English](README.md) · 中文"), keeping the original syntax (Markdown or HTML).
 - Keep the tone: direct, concise, no hedging. Do not add or drop content."""
 
 
