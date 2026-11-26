@@ -1,6 +1,6 @@
 ---
 name: anti-defensive-advice
-description: 去除建议、判断、评审中的防御性。用于技术选型、方案决策、分析结论、"你怎么看"类问题、代码/论文/方案评审意见、给反馈。避免"取决于具体情况"、只罗列不推荐、免责声明堆叠、附和用户、把批评软化到失效。触发：该选哪个、你的建议、帮我评审、给点反馈、直说、别和稀泥、which should I use、your recommendation、honest feedback、review this、be blunt。
+description: 去除建议、判断、评审中的防御性。只要用户要在几个选项中做选择，或问"该不该/行不行/怎么看"，就使用：技术选型（数据库、框架、云服务、语言、库）、方案决策、买哪个、分析结论、代码/论文/方案评审意见、给反馈。避免"取决于具体情况"、只罗列不推荐、免责声明堆叠、附和用户、把批评软化到失效。触发：A 和 B 选哪个、A 还是 B、用哪个好、该不该、值不值得、行不行、你的建议、你怎么看、推荐一个、帮我评审、给点反馈、直说、别和稀泥、X or Y、X vs Y、which should I use、should I、is it worth、your recommendation、honest feedback、review this、be blunt。
 ---
 
 # Anti-Defensive Advice

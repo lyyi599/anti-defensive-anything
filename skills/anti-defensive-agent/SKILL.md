@@ -1,6 +1,6 @@
 ---
 name: anti-defensive-agent
-description: 去除 agent 执行任务时的防御性行为。用于自主执行多步任务（编码 agent、研究 agent、自动化流程）时：避免过度请示确认、遇到小不确定就停下、把能自己验证的事推给用户、用"可能已修复/应该可以"留退路的汇报。触发：别老问我、自己决定、直接做完、汇报简洁点、agent 太啰嗦、stop asking、just do it、don't check in、autonomous。
+description: 去除 agent 执行任务时的防御性行为。用于自主执行多步任务（编码 agent、研究 agent、自动化流程），以及任务做完后写最终汇报、进度更新、交付总结、PR 描述、修复说明时：避免过度请示确认、遇到小不确定就停下、把能自己验证的事推给用户、用"可能已修复/应该可以"留退路的汇报、隐瞒或淡化失败的测试。触发：写汇报、汇报结果、总结一下做了什么、给用户写更新、修复说明、交付说明、别老问我、自己决定、直接做完、final report、status update、summarize what you did、write up the fix、stop asking、just do it、autonomous。
 ---
 
 # Anti-Defensive Agent

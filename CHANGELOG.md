@@ -6,9 +6,11 @@
 
 ## [Unreleased]
 
-### Known issues（首轮评估发现，每个用例只跑了 1 次）
-- `agent`：给出"写最终汇报"这类请求时 skill 没有被触发；description 的触发词偏向"别老问我"。
-- `advice`：用户只问"A 和 B 选哪个"时 skill 没有被触发。
+### Changed
+- `agent`：触发描述覆盖"写最终汇报 / 进度更新 / 修复说明"。此前这类请求不会触发 skill；修改后 `agent-report` 3/3 触发，得分 1.00（无插件基线 0.67）。
+- `advice`：触发描述覆盖"A 还是 B / 选哪个 / 该不该"等选择类问题。此前不会触发；修改后 `advice-db-choice` 3/3 触发，得分 1.00（无插件基线 0.50）。
+
+### Known issues
 - `writing`：rebuttal 有时仍以 "We thank the reviewer" 开头，并把同领域新数据集的结果说成"在未见数据上也成立"（2 次中 1 次）。
 
 ## [0.1.0] - 2026-11-26
