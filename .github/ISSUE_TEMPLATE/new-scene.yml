@@ -1,0 +1,32 @@
+name: 新场景提议 / New scenario
+description: 提议一个新的 anti-defensive 场景 skill
+labels: [scene]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 场景名 / Name
+      placeholder: anti-defensive-design
+    validations:
+      required: true
+  - type: textarea
+    id: signals
+    attributes:
+      label: 防御信号 / Defensive signals
+      description: 这个场景里，防御性具体长什么样？列 3 条以上可识别的模式。
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: 对照例子 / Before & after
+      description: 至少一组"防御性 → 反防御"的改写。
+    validations:
+      required: true
+  - type: textarea
+    id: keep
+    attributes:
+      label: 必须保留 / What must stay
+      description: 这个场景里哪些"防御"是对的、不能删？
+    validations:
+      required: true

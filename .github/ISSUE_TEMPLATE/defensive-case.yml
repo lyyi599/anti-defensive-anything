@@ -1,0 +1,38 @@
+name: 防御性案例 / Defensive case
+description: 装了 skill 之后，模型在某个场景仍然很防御（或者反过来，夸大了）
+labels: [case]
+body:
+  - type: dropdown
+    id: scene
+    attributes:
+      label: 场景 / Scenario
+      options: [writing, coding, ideation, advice, agent, 其他 / other]
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: 你的请求 / Your prompt
+      description: 原样粘贴，涉及隐私的内容请替换。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: 模型输出 / Model output
+      description: 只需要贴出防御性（或夸大）的部分。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你期望的样子 / What you expected
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: 环境 / Environment
+      placeholder: Claude Code 2.1.x + 插件 0.1.0 / Codex / 网页版 + quick prompt
