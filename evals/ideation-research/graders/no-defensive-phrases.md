@@ -4,4 +4,4 @@ pattern: "可能面临|需要注意的是|各有优劣|视具体情况"
 match: not_contains
 ---
 
-回复中不应出现典型的防御性措辞。
+The reply must not contain typical defensive phrases (may face challenges / it is worth noting / pros and cons / depends on the situation).

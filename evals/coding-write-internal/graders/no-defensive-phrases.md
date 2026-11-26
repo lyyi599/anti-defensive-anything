@@ -5,4 +5,4 @@ flags: m
 match: not_contains
 ---
 
-内部函数里不应出现 try/except、isinstance 或 None 检查。
+The internal function must not contain try/except, isinstance, or None checks (code lines only).

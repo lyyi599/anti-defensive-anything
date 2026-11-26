@@ -1,123 +1,127 @@
-# 开发者指南
+# Developer guide
 
-面向想修改规则、新增场景或发布新版本的人。只想使用请看 [README.md](README.md)。
+For people changing rules, adding scenarios, or cutting releases. To just use the skills, see [README.md](README.md).
 
-## 结构
+The working language of this repository is **English**: skills, docs, scripts, and grader rubrics are written in English. Chinese docs are generated (see [Languages](#languages)).
+
+## Layout
 
 ```
 skills/
-├── anti-defensive/            # 通用原则 + 路由入口（common + router）
-├── anti-defensive-writing/    # 论文、rebuttal、简历、申请书、邮件
-├── anti-defensive-coding/     # 吞异常、静默 fallback、过度抽象
-├── anti-defensive-ideation/   # 头脑风暴、研究 idea
-├── anti-defensive-advice/     # 选型、决策、评审、反馈
-└── anti-defensive-agent/      # agent 执行：过度请示、留退路的汇报
-prompts/quick-prompt.md        # 无 skill 环境下的通用提示词（英文版 quick-prompt-en.md 为生成文件）
-templates/SKILL.template.md    # 新增场景的模板
-scripts/install.sh             # 安装
-scripts/validate.py            # 校验 frontmatter 与路由表
-scripts/translate.py           # 从中文源文件生成英文译文
-evals/                         # 每个场景的评估用例（claude plugin eval）
-.claude-plugin/                # Claude Code 插件与 marketplace 清单
-.github/                       # CI 与 issue 模板
-assets/                        # logo.svg、logo.png、icon.png；src/gen_logo.py 是生成脚本
-CHANGELOG.md                   # 每个版本的行为变化
-CLAUDE.md                      # 给 Claude 的维护约定
+├── anti-defensive/            # core principles + router (common + router)
+├── anti-defensive-writing/    # papers, rebuttals, resumes, proposals, emails
+├── anti-defensive-coding/     # swallowed errors, silent fallbacks, over-abstraction
+├── anti-defensive-ideation/   # brainstorming, research ideas
+├── anti-defensive-advice/     # technology choices, decisions, reviews, feedback
+└── anti-defensive-agent/      # agent execution: over-asking, escape-hatch reports
+prompts/quick-prompt.md        # paste-in prompt for tools without skills (quick-prompt-zh.md is generated)
+templates/SKILL.template.md    # template for a new scenario
+scripts/install.sh             # install
+scripts/validate.py            # consistency checks
+scripts/translate.py           # generates Chinese docs from English sources
+evals/                         # per-scenario eval cases (claude plugin eval)
+.claude-plugin/                # Claude Code plugin + marketplace manifests
+.github/                       # CI and issue templates
+assets/                        # logo.svg, logo.png, icon.png; src/gen_logo.py generates them
+README_CN.md                   # Chinese entry point (generated)
+CHANGELOG.md                   # behavior changes per version
+CLAUDE.md                      # maintenance conventions for Claude
 ```
 
-## 工作方式
+## How it works
 
 ```
-用户请求 ──► anti-defensive（通用原则 + 路由表）──► 加载匹配的场景 skill
-                                         │
-场景关键词直接命中 ──► anti-defensive-xxx ──┘ 场景 skill 先回读通用原则
+user request ──► anti-defensive (core principles + routing table) ──► loads the matching scene skill
+                                                      │
+scene keywords match directly ──► anti-defensive-xxx ─┘ the scene skill reads the core principles first
 ```
 
-- **两条入口都通**：每个 skill 都有自己的 `description`，Agent 会按关键词自动触发；场景 skill 开头都会引用 `../anti-defensive/SKILL.md`，所以无论从哪里进入，通用原则都会生效。
-- **路由表**在 `skills/anti-defensive/SKILL.md` 里，一行一个场景：识别信号 → 加载哪个 skill。
-- **诚实底线**写在通用原则里，所有场景共享：反防御 ≠ 夸大。会改变决策的风险、未验证项、不知道的事，必须保留。
+- **Both entry points work**: every skill has its own `description`, so the agent triggers it by keyword; every scene skill starts by pointing to `../anti-defensive/SKILL.md`, so the core principles apply however you enter.
+- **The routing table** lives in `skills/anti-defensive/SKILL.md`, one row per scene: signals → which skill to load.
+- **The honesty floor** is in the core principles and shared by every scene: anti-defensive ≠ overclaiming. Decision-changing risks, unverified items, and unknowns must stay.
 
-## 本地开发
+## Local development
 
-用软链接安装，改完文件立即生效，无需重装：
+Install as symlinks so edits take effect immediately:
 
 ```bash
-scripts/install.sh --link                       # 链接到 ~/.claude/skills
-scripts/install.sh --link coding ideation       # 只链接部分场景（通用 skill 总会一起装）
-scripts/install.sh --link --target ./.claude/skills   # 项目级
+scripts/install.sh --link                             # link into ~/.claude/skills
+scripts/install.sh --link coding ideation             # only some scenes (the core skill is always included)
+scripts/install.sh --link --target ./.claude/skills   # project-level
 ```
 
-## 新增一个场景
+## Adding a scenario
 
-1. 复制 `templates/SKILL.template.md` 到 `skills/anti-defensive-<domain>/SKILL.md` 并填写。
-2. 在 `skills/anti-defensive/SKILL.md` 的路由表里加一行。
-3. 在 `evals/` 下加至少一个 `<domain>-*` 用例（见下文"评估"）。
-4. 如有必要，在 `prompts/quick-prompt.md` 里补一条精简规则，在 `README.md` 的使用表里补一行示例，然后运行 `python3 scripts/translate.py` 生成英文版。
-5. 运行校验和该场景的评估。
+1. Copy `templates/SKILL.template.md` to `skills/anti-defensive-<domain>/SKILL.md` and fill it in.
+2. Add a row to the routing table in `skills/anti-defensive/SKILL.md`.
+3. Add at least one `<domain>-*` case under `evals/` (see [Evals](#evals)).
+4. If useful, add a rule to `prompts/quick-prompt.md` and an example row to the usage table in `README.md`, then run `python3 scripts/translate.py` to regenerate the Chinese versions.
+5. Run the checks and the scene's evals.
 
-每个场景 skill 都是同一套结构：**一句话原则 → 防御信号 → 规则 → 对照表 → 必须保留**。最后一节最重要：它划定了哪些防御是对的。
+Every scene skill has the same five sections: **one-line principle → defensive signals → rules → before/after → must keep**. The last one matters most: it says which defenses are correct.
 
-## 校验
+## Checks
 
 ```bash
-python3 scripts/validate.py     # 结构、路由表、版本号、CHANGELOG、中英文同步、每个场景有评估用例
-claude plugin validate .        # 插件与 marketplace 清单
+python3 scripts/validate.py     # structure, routing table, versions, CHANGELOG, eval coverage; warns on stale translations
+claude plugin validate .        # plugin + marketplace manifests
 ```
 
-CI（`.github/workflows/validate.yml`）在每次推送和 PR 时运行 `validate.py`，并对安装脚本做冒烟测试。
+CI (`.github/workflows/validate.yml`) runs `validate.py` and an install smoke test on every push and PR.
 
-## 评估
+## Evals
 
-`validate.py` 只管格式；规则有没有用，要靠评估。用例在 `evals/<场景>-<名字>/`：
+`validate.py` only checks shape; whether a rule works is what evals are for. Cases live in `evals/<scene>-<name>/`:
 
 ```
 evals/advice-db-choice/
-├── prompt.md                    # 会引发防御性的请求（frontmatter: tags, runs, allowed_tools）
+├── prompt.md                    # a request that tends to trigger defensiveness (frontmatter: tags, runs, allowed_tools)
 └── graders/
-    ├── no-defensive-phrases.md  # 正则：典型防御措辞不应出现
-    ├── criteria.md              # LLM 评审：反防御特征 + 诚实底线（必须保留的内容）
-    └── skill-fired.md           # 指示项：skill 是否被触发（不计入与基线的对比）
+    ├── no-defensive-phrases.md  # regex: typical defensive phrases must not appear
+    ├── criteria.md              # LLM rubric: anti-defensive traits + honesty floor (what must stay)
+    └── skill-fired.md           # indicator: did the skill trigger (not scored against the baseline)
 ```
 
-运行：
+Run:
 
 ```bash
-claude plugin eval . --case 'advice-*'      # 改了哪个场景就跑哪个；默认每个用例 3 次，并跑无插件基线对比
-claude plugin eval .                        # 全量
+claude plugin eval . --case 'advice-*'      # run the scene you changed; default 3 runs per case plus a no-plugin baseline
+claude plugin eval .                        # everything
 ```
 
-- 需要 git ≥ 2.31。系统 git 太旧时，可用 micromamba 装一个用户态 git，并临时加到 PATH 前面。
-- skill 的对照表不能复用评估用例的内容（数据集、数字、原句），否则评估测的是照抄，不是规则。
-- 每个用例都要埋一个"必须保留"的点（真实局限、边界校验、失败的测试），防止 skill 被调成一味删减或夸大。
-- 正则评估的是整条回复，包括解释文字；匹配代码时要带上语法特征（例如 `except Exception\s*:`），避免误报。
-- 大小写不敏感用 `flags: i`，不要写 `(?i)`（评估器用 JavaScript 正则）。
-- 结果在 `evals/results/`（已 gitignore）。默认会把报告发布到 claude.ai，不想发布就加 `--no-publish`。
-- 同一用例单次结果波动不小，判断改动效果时至少跑默认的 3 次。
-- 开放式输出（如 ideation）的评审：一条评审只判断一件事，并写明哪些情况"不算违反"；评审模型用 `--judge-model sonnet`，默认的 haiku 在长中文输出上投票容易分裂。
+- Case prompts are deliberately written in **Chinese**: they check that the English skills trigger and work for Chinese-speaking users. Rubrics are in English.
+- Requires git ≥ 2.31. If the system git is older, install a user-space git (e.g. with micromamba) and put it first on PATH.
+- Skill examples must not reuse eval content (datasets, numbers, sentences); otherwise the eval tests copying, not the rule.
+- Every case plants something that **must stay** (a real limitation, a boundary check, a failing test), so a skill can't be tuned into blind deletion or overclaiming.
+- Regex graders see the whole reply, including explanations; when matching code, include syntax (e.g. `except Exception\s*:` on indented lines with `flags: m`) to avoid false positives.
+- Use `flags: i` for case-insensitive matching, not `(?i)` (the evaluator uses JavaScript regex).
+- Results go to `evals/results/` (gitignored). Reports are published to claude.ai by default; pass `--no-publish` to keep them local.
+- Single runs are noisy; judge a change on at least the default 3 runs.
+- For open-ended output (e.g. ideation): one rubric per question, and spell out what does **not** count as a violation; use `--judge-model sonnet`, since the default haiku splits votes on long outputs.
 
-新增用例时，用户反馈的 issue（"防御性案例"模板）可以直接改写成 `prompt.md` + `criteria.md`。
+Issues filed with the "defensive case" template can be turned directly into `prompt.md` + `criteria.md`.
 
-## 多语言
+## Languages
 
-- **skill 正文只用一种语言（中文）。** 回复语言跟随用户提问的语言，与 skill 的语言无关；中英文 skill 的对比评估也没有差别。只有 `description` 里的触发词需要中英双语。
-- **给人读的文档：中文是源，英文是生成的。** `README_EN.md` 和 `prompts/quick-prompt-en.md` 第一行记录了源文件和源文件哈希，不要手改。
+- **Skills are English only.** Replies follow the user's language regardless of the skill's language. A side-by-side eval of Chinese vs. fully translated English skills showed no advantage either way. Only the trigger words in `description` are bilingual (English + Chinese).
+- **Human docs: English is the source, Chinese is generated.** `README_CN.md` and `prompts/quick-prompt-zh.md` start with a line recording their source file and its hash. Don't edit them by hand.
 
 ```bash
-python3 scripts/translate.py --check   # 哪些译文过时（不调用模型）
-python3 scripts/translate.py           # 重新生成过时的译文（需要 claude CLI，默认用 sonnet）
-python3 scripts/translate.py --force   # 全部重新生成
+python3 scripts/translate.py --check   # which translations are stale (no model call)
+python3 scripts/translate.py           # regenerate stale translations (needs the claude CLI; sonnet by default)
+python3 scripts/translate.py --force   # regenerate everything
 ```
 
-- 译文过时只是警告：`validate.py` 和 CI 会提示，但不会失败。翻译可以晚一点跟上，不会挡住改动。
-- 新增需要翻译的文件：在 `scripts/translate.py` 的 `PAIRS` 里加一行（源文件、译文、目标语言）。加新语言也是同样做法。
-- 文件间链接（如 `README.md` → `README_EN.md`）由脚本处理；机械替换写在脚本里，不交给模型。
+- A stale translation is a warning, never a failure: `validate.py` and CI report it, but it doesn't block a change.
+- To translate a new file or add a language, add a row to `PAIRS` in `scripts/translate.py` (source, target, language).
+- Links between files (e.g. `README.md` → `README_CN.md`) are rewritten by the script; mechanical replacements live in code, not in the model's instructions.
 
 ## Logo
 
-只改 `assets/src/gen_logo.py` 里的 `PARAMS`，然后运行 `python3 assets/src/gen_logo.py`，它会重新生成 `logo.svg`、`logo.png`、`icon.png`（PNG 需要 Pillow）。
+Change only `PARAMS` in `assets/src/gen_logo.py`, then run `python3 assets/src/gen_logo.py` to regenerate `logo.svg`, `logo.png`, and `icon.png` (PNGs need Pillow).
 
-## 发布
+## Releasing
 
-1. 在 `CHANGELOG.md` 把 `[Unreleased]` 改成新版本号和日期，写清楚每个场景行为上的变化。
-2. 同步修改 `.claude-plugin/plugin.json` 和 `.claude-plugin/marketplace.json` 中的 `version`（`validate.py` 会检查两者一致且 CHANGELOG 有条目）。
-3. 跑完校验和相关评估后提交并推送到 `main`，用户在 Claude Code 中更新插件即可获取新版本。
+1. In `CHANGELOG.md`, turn `[Unreleased]` into the new version and date, and describe each scene's behavior change.
+2. Bump `version` in both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` (`validate.py` checks they match and that the CHANGELOG has the entry).
+3. After the checks and relevant evals pass, commit and push to `main`; users get the new version by updating the plugin in Claude Code.

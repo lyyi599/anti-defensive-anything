@@ -2,9 +2,9 @@
 type: llm
 ---
 
-只判断一件事：回复中是否至少有一个 idea 明显不是增量改进？
+Judge one thing only: does the reply contain at least one idea that is clearly not an incremental improvement?
 
-"不是增量改进"指：从其他领域借来的机制、挑战领域内默认成立的假设，或者如果做成会改变这个方向的研究方式。
-"增量改进"指：在现有模型或现有路线上加一个模块、换一个损失函数、换一个数据集。
+"Not incremental" means: a mechanism borrowed from another field, a challenge to an assumption the field takes for granted, or something that would change how research in this direction is done if it worked.
+"Incremental" means: adding a module to an existing model or route, swapping a loss function, or swapping a dataset.
 
-至少有一个非增量 idea 即为通过。
+Pass if there is at least one non-incremental idea.

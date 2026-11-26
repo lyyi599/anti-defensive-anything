@@ -1,37 +1,43 @@
 # Changelog
 
-版本号同时写在 `.claude-plugin/plugin.json` 和 `.claude-plugin/marketplace.json`，`scripts/validate.py` 会检查两者一致，并要求这里有对应条目。
+The version lives in both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`; `scripts/validate.py` checks they match and that this file has an entry for it.
 
-规则改动会直接改变模型行为，所以每条记录写清楚**哪个场景、行为上有什么变化**。
+Rule changes change model behavior, so every entry says **which scene and what behavior changed**.
 
 ## [Unreleased]
 
-### Added
-- `scripts/translate.py`：英文文档（`README_EN.md`、`prompts/quick-prompt-en.md`）改为从中文源文件生成，译文首行记录源文件哈希；过时的译文由 `validate.py` 警告，不阻塞 CI。
-
 ### Changed
-- `validate.py`：去掉逐项比对中英文 README 行数的硬性检查，改为译文过时警告。
-- README 注明 skill 正文为中文、对英文请求同样有效。依据：同一批评估用例上，中文 skill 触发 18/23、质量评审 55/55；完整翻译的英文 skill 触发 14/21、质量评审 50/51，没有体现出英文更好，因此 skill 保持中文单语。
+- **Working language is now English.** Skills, `README.md`, developer docs, scripts, and grader rubrics are written in English. Chinese is an additional entry point: `README_CN.md` and `prompts/quick-prompt-zh.md` are generated from the English sources by `scripts/translate.py`. Eval case prompts stay in Chinese to check that the English skills work for Chinese-speaking users. Skill trigger words remain bilingual.
+- All skills switched to English. Same rules, examples, and boundaries as the Chinese versions. A side-by-side eval on the same cases: Chinese skills triggered 18/23 with 55/55 grader passes; English skills 14/21 with 50/51 — no meaningful difference.
+
+### Added
+- `scripts/translate.py`: generates translations from a source file and records the source hash on the first line; `validate.py` warns on stale translations without failing CI.
+
+### Known issues
+- `advice` (correction to 0.2.0): the `advice-db-choice` rubric required stating the flip condition "in one sentence". Relaxed to its intent — briefly state when the recommendation would change, instead of comparing every case — the no-plugin baseline also scores 3/3. The 0.2.0 gap (1.00 vs 0.50) came mainly from that strict rubric item, not from the plugin making the model lead with a recommendation. Like `coding`, this case currently can't show the skill's effect; it stays as a regression guard.
+
+### Removed
+- `validate.py`'s hard check that the Chinese and English README tables have the same number of rows (replaced by the stale-translation warning).
 
 ## [0.2.0] - 2026-11-26
 
 ### Changed
-- `agent`：触发描述覆盖"写最终汇报 / 进度更新 / 修复说明"。此前这类请求不会触发 skill；修改后 `agent-report` 3/3 触发，得分 1.00（无插件基线 0.67）。
-- `advice`：触发描述覆盖"A 还是 B / 选哪个 / 该不该"等选择类问题。此前不会触发；修改后 `advice-db-choice` 3/3 触发，得分 1.00（无插件基线 0.50）。
-- `writing`：rebuttal 规则明确"第一句就是回应本身，不以 thank/apologize 开头"，并要求新证据只主张它实际覆盖的范围（同领域新数据集 ≠ 新领域）。此前 2 次中 1 次以感谢开头并夸大泛化范围；修改后 `writing-rebuttal` 5/5 通过（无插件基线 0/5）。
-- `coding`：触发描述覆盖"写函数 / 实现 / 加功能 / 修 bug"等普通编码请求。
-- 评估：`ideation-research` 的综合评审拆成 4 个单项（大胆 idea / 首选 / 列表不挂保留话 / 不编造），改用 sonnet 评审后 3 票一致：有插件 1.00，无插件 0.60（基线 3/3 没有非增量 idea）。新增 `coding-add-feature` 用例。
+- `agent`: triggers now cover "write the final report / status update / fix write-up". Such requests previously didn't trigger the skill; now `agent-report` triggers 3/3 and scores 1.00 (no-plugin baseline 0.67).
+- `advice`: triggers now cover choice questions like "A or B / which one / should I". Previously not triggered; now `advice-db-choice` triggers 3/3 and scores 1.00 (baseline 0.50).
+- `writing`: rebuttal rules now say "the first sentence is the response itself; don't open with thank/apologize", and new evidence may only claim the range it covers (a new in-domain dataset ≠ a new domain). Before: 1 of 2 runs opened with thanks and overstated generalization; after: `writing-rebuttal` 5/5 pass (baseline 0/5).
+- `coding`: triggers now cover ordinary coding requests ("write a function / implement / add a feature / fix a bug").
+- Evals: the `ideation-research` rubric was split into 4 single-question graders (bold idea / first choice / no hedging in the list / no fabrication) and judged by sonnet; votes are now unanimous: with plugin 1.00, without 0.60 (the baseline produced no non-incremental idea in 3/3 runs). Added the `coding-add-feature` case.
 
 ### Known issues
-- `coding`：三个用例（清理代码、写内部函数、给已有代码加功能）无插件基线都是满分，当前模型在这类小任务上本身就不防御，测不出 skill 的作用。补了触发词后 skill 仍很少被调用（两个用例 6 次中 1 次）。用例保留作回归防护。
+- `coding`: all three cases (cleanup, writing an internal function, adding a feature to existing code) score full marks without the plugin — the current model isn't defensive on such small tasks, so the skill's effect can't be measured. Even with the wider triggers, the skill rarely fires (1 of 6 runs across two cases). The cases stay as regression guards.
 
 ## [0.1.0] - 2026-11-26
 
 ### Added
-- 通用原则与路由 skill `anti-defensive`，含诚实底线。
-- 场景 skill：`writing`、`coding`、`ideation`、`advice`、`agent`。
-- 中英文通用提示词、新场景模板、安装与校验脚本。
-- Claude Code 插件与 marketplace 清单。
-- Logo（星冲破盾）及其生成脚本 `assets/src/gen_logo.py`。
-- 每个场景的评估用例（`evals/`），用 `claude plugin eval` 运行。
-- CI：推送和 PR 时运行 `scripts/validate.py`。
+- Core principles + router skill `anti-defensive`, including the honesty floor.
+- Scene skills: `writing`, `coding`, `ideation`, `advice`, `agent`.
+- Chinese and English quick prompts, a new-scene template, install and validation scripts.
+- Claude Code plugin and marketplace manifests.
+- Logo (a star breaking through a shield) and its generator `assets/src/gen_logo.py`.
+- Per-scene eval cases (`evals/`), run with `claude plugin eval`.
+- CI: runs `scripts/validate.py` on push and PR.

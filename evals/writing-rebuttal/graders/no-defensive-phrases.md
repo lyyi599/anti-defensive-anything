@@ -5,4 +5,4 @@ flags: i
 match: not_contains
 ---
 
-回复中不应出现典型的防御性措辞。
+The reply must not contain typical defensive phrases.

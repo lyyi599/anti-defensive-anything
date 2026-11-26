@@ -2,8 +2,8 @@
 type: llm
 ---
 
-判断修改后的代码是否满足以下全部条件：
-1. 内部函数 `_scale` 去掉了 try/except、对 None 和类型的重复检查，以及静默返回 [] 的兜底。
-2. 必须保留：`scale_endpoint` 作为 HTTP 系统边界，仍然校验请求体（缺少 values 时返回 400），并且仍然把数字转换错误转成 400 响应。
-3. 代码仍然可以正确运行，功能不变。
-全部满足为通过。如果把端点的输入校验也删掉了，判为不通过。
+Decide whether the revised code meets ALL of the following:
+1. The internal function `_scale` no longer has the try/except, the duplicate None/type checks, or the silent `return []` fallback.
+2. Must keep: `scale_endpoint`, as the HTTP system boundary, still validates the request body (returns 400 when `values` is missing) and still turns number-conversion errors into a 400 response.
+3. The code still runs correctly with unchanged behavior.
+Pass only if all are met. If the endpoint's input validation was also removed, fail.

@@ -1,64 +1,64 @@
 ---
 name: anti-defensive-ideation
-description: 去除想 idea 时的防御性。用于头脑风暴、研究选题、论文 idea、方案构思、产品点子、创意发散。避免只给增量改进、共识方案、边想边自我审查、每个点子都附带"但可能有挑战"。触发：想 idea、头脑风暴、选题、有什么新思路、研究方向、brainstorm、research ideas、novel ideas、think bigger。
+description: Remove defensiveness from ideation. Use for brainstorming, research topic selection, paper ideas, solution concepts, product ideas, creative divergence. Avoid offering only incremental improvements or consensus ideas, self-censoring while generating, and attaching "but this may be challenging" to every idea. Triggers: brainstorm, research ideas, novel ideas, think bigger, new directions, 想 idea、头脑风暴、选题、有什么新思路、研究方向。
 ---
 
 # Anti-Defensive Ideation
 
-前置：遵循 `anti-defensive` 的通用原则与诚实底线（同级目录 `../anti-defensive/SKILL.md`）。
+Prerequisite: follow the core principles and honesty floor of `anti-defensive` (sibling directory `../anti-defensive/SKILL.md`).
 
-> **生成和评判分开。生成时不审查，评判时不手软。**
+> **Separate generating from judging. Don't censor while generating; don't go easy while judging.**
 
-防御性想 idea 的根源：模型倾向输出"最典型"的答案（mode collapse），又在生成时就用可行性给自己设限，结果只剩安全的增量改进。
+The roots of defensive ideation: the model tends to output the "most typical" answer (mode collapse), and it limits itself by feasibility while still generating, so all that's left are safe incremental improvements.
 
-## 防御信号
+## Defensive signals
 
-- 列出的 idea 是领域里任何人都会先想到的那几个
-- 全部是"在 X 上加 Y 模块""把 A 方法用到 B 数据集"
-- 每个 idea 后面跟着"但可能面临数据/算力/可行性挑战"
-- 几个 idea 只是同一个想法换了措辞
-- 没有一个 idea 让人觉得"这有点疯"
+- The listed ideas are the ones anyone in the field would think of first
+- All of them are "add module Y on top of X" or "apply method A to dataset B"
+- Every idea is followed by "but may face data/compute/feasibility challenges"
+- Several ideas are the same idea reworded
+- Not a single idea makes you think "this is a bit crazy"
 
-## 流程
+## Process
 
-**1. 先排除共识。**
-列出这个问题上最显而易见的 3–5 个 idea，标为"共识区"，后续不再提出它们或它们的变体。
+**1. Rule out the consensus first.**
+List the 3–5 most obvious ideas for this problem, mark them as the "consensus zone", and don't propose them or their variants afterwards.
 
-**2. 分档生成（此阶段禁止写风险和可行性）。**
-每轮至少覆盖四档：
+**2. Generate in tiers (no risks or feasibility at this stage).**
+Each round covers at least four tiers:
 
-| 档位 | 含义 |
+| Tier | Meaning |
 |---|---|
-| 增量 | 现有路线上的明确改进 |
-| 跨域 | 从其他领域搬来的机制、工具、视角 |
-| 反共识 | 挑战领域内默认成立的一个假设 |
-| 登月 | 如果做成，会改变这个领域怎么工作 |
+| Incremental | a clear improvement on the existing route |
+| Cross-domain | a mechanism, tool, or perspective borrowed from another field |
+| Contrarian | challenges one assumption the field takes for granted |
+| Moonshot | if it worked, it would change how this field works |
 
-增量档最多占四分之一。
+The incremental tier is at most a quarter.
 
-**3. 先放大，再收敛。**
-对有潜力的 idea，先推到最激进的版本，再往回收到可做的版本。不要从安全版本开始。
+**3. Amplify first, then converge.**
+For promising ideas, push them to their most radical version first, then pull back to a doable version. Don't start from the safe version.
 
-**4. 评判（独立阶段）。**
-价值和可行性**分开打分**，不允许"不确定能做出来"压低"做出来很重要"的分数。然后给出明确排序和首选。
+**4. Judge (a separate stage).**
+Score value and feasibility **separately**; "not sure it can be built" must not drag down the score of "it matters if built". Then give a clear ranking and a first choice.
 
-## 每个 idea 的写法
+## How to write each idea
 
 ```
-名称：一句话
-核心洞察：它押注的那个非显然判断是什么
-为什么现在：什么条件变了让它可行
-最小验证：一周内能跑的最小实验
+Name: one sentence
+Core insight: the non-obvious bet it makes
+Why now: what changed to make it feasible
+Minimal test: the smallest experiment you can run within a week
 ```
 
-## 对照
+## Before / after
 
-| 防御性 | 反防御 |
+| Defensive | Anti-defensive |
 |---|---|
-| 可以尝试在现有模型上加入注意力机制来提升性能，不过需要注意计算开销可能增加。 | 反共识：去掉注意力。押注该任务的依赖关系是局部的，用卷积 + 显式长程记忆替代，最小验证是在 LRA 子集上对比。 |
-| 以下是几个可能的方向，每个都有其优缺点，需要根据具体情况选择。 | 首选 #3：价值最高，最小验证只需两天。#1 稳妥但天花板低。 |
+| You could try adding an attention mechanism to the existing model to improve performance, but note that the compute cost may increase. | Contrarian: remove attention. Bet that the task's dependencies are local; replace it with convolutions + explicit long-range memory. Minimal test: compare on an LRA subset. |
+| Here are several possible directions, each with pros and cons; choose based on your situation. | First choice #3: highest value, and the minimal test takes only two days. #1 is safe but has a low ceiling. |
 
-## 必须保留
+## Must keep
 
-- 评判阶段如实写出致命风险（伦理、根本不可行的物理/数学约束）。
-- 不编造"已有工作"或引用来证明新颖性；不确定是否已有人做过就说不确定。
+- In the judging stage, state fatal risks truthfully (ethics, hard physical/mathematical constraints that make it fundamentally infeasible).
+- Don't fabricate "existing work" or citations to argue novelty; if unsure whether someone has done it, say you're unsure.

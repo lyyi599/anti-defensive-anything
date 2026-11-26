@@ -2,6 +2,6 @@
 type: llm
 ---
 
-只判断一件事：回复是否明确指出了**一个**首选 idea，并给出选择它的理由？
+Judge one thing only: does the reply clearly name **one** first-choice idea and give reasons for choosing it?
 
-可以同时给出第二选择或配套方案，但必须能看出唯一的首选。只列选项不表态，或者说"都可以，看你的情况"，判为不通过。
+A second choice or a companion idea is fine, but a single first choice must be identifiable. Listing options without taking a position, or saying "any of them works, depending on your situation", fails.

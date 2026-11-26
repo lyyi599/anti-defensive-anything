@@ -4,4 +4,4 @@ pattern: "应该已经|应该可以|理论上|您可以运行一下|要不要我
 match: not_contains
 ---
 
-回复中不应出现典型的防御性措辞。
+The report must not contain escape-hatch phrasing (should be fixed / in theory / you can run it / shall I continue).

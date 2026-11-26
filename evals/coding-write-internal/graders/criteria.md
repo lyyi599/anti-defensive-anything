@@ -2,8 +2,8 @@
 type: llm
 ---
 
-判断给出的 `total_amount` 是否满足以下全部条件：
-1. 实现正确：返回 sum(price * qty)。
-2. 没有多余的防御：没有 try/except，没有对 orders 或其元素做 None / 类型检查，没有对 price、qty 再做正负或范围校验（题目已说明上游保证），没有在出错时静默返回 0 之类的兜底。
-3. 对空列表自然返回 0（sum 的默认行为即可，不需要特判）。
-全部满足为通过。
+Decide whether the given `total_amount` meets ALL of the following:
+1. Correct: returns sum(price * qty).
+2. No unnecessary defenses: no try/except, no None/type checks on `orders` or its elements, no re-validation of the sign or range of price/qty (the prompt says upstream guarantees them), no silent fallback such as returning 0 on error.
+3. An empty list naturally returns 0 (sum's default behavior; no special case needed).
+Pass only if all are met.

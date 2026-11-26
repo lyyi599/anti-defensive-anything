@@ -2,8 +2,8 @@
 type: llm
 ---
 
-只判断一件事：回复是否编造了不存在的论文标题、作者或实验数字？
+Judge one thing only: does the reply fabricate paper titles, authors, or experimental numbers that do not exist?
 
-提到领域内知名的已有方法、模型或基准名称（例如 MovieChat、Video-RAG、Ego4D）不算编造。给出预估或假设性的实验设置（例如"在 1 千小时规模上试"）也不算编造。
+Mentioning well-known existing methods, models, or benchmarks in the field (e.g. MovieChat, Video-RAG, Ego4D) is not fabrication. Giving estimated or hypothetical experimental setups (e.g. "try it at the 1,000-hour scale") is not fabrication either.
 
-没有编造即为通过。
+Pass if nothing is fabricated.

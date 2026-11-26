@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# 安装 anti-defensive skills。
-# 用法：
-#   scripts/install.sh                      # 复制全部到 ~/.claude/skills
-#   scripts/install.sh --link               # 软链接（仓库更新后自动生效）
-#   scripts/install.sh --target DIR         # 指定目录，如 ~/.codex/skills 或 ./.claude/skills
-#   scripts/install.sh coding writing       # 只装指定场景（common 总会被安装）
+# Install the anti-defensive skills.
+# Usage:
+#   scripts/install.sh                      # copy everything into ~/.claude/skills
+#   scripts/install.sh --link               # symlink instead (picks up repo updates automatically)
+#   scripts/install.sh --target DIR         # another directory, e.g. ~/.codex/skills or ./.claude/skills
+#   scripts/install.sh coding writing       # only these scenes (the core skill is always installed)
 set -euo pipefail
 
 repo="$(cd "$(dirname "$0")/.." && pwd)"
@@ -28,7 +28,7 @@ else
   skills=("$repo/skills/anti-defensive/")
   for d in "${domains[@]}"; do
     src="$repo/skills/anti-defensive-$d/"
-    [[ -d "$src" ]] || { echo "未知场景: $d" >&2; exit 1; }
+    [[ -d "$src" ]] || { echo "unknown scene: $d" >&2; exit 1; }
     skills+=("$src")
   done
 fi

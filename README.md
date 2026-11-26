@@ -2,24 +2,24 @@
 
 # Anti-Defensive Anything
 
-中文 · [English](README_EN.md)
+English · [中文](README_CN.md)
 
-**让 AI 停止"为了不出错而写"——一套轻量、零依赖的 Agent Skills。**
+**Stop AI from writing to avoid blame — a lightweight, zero-dependency set of Agent Skills.**
 
-> 产出是为了完成目标，不是为了不被指责。
+> Output exists to get the job done, not to avoid being blamed.
 
-论文里提前认错、代码里到处兜底吞异常、想 idea 只敢做增量、给建议"取决于具体情况"、执行任务事事请示——装上之后，AI 在这些场景里直接给结论、做取舍、把事做完；真正会影响你决策的风险照样说清楚。
+Papers that apologize before reviewers say a word, code wrapped in fallbacks that swallow errors, research ideas that never leave incremental territory, advice that ends in "it depends", agents that ask permission for every step. With these skills installed, the AI leads with conclusions, makes trade-offs, and finishes the work — while still stating the risks that would change your decision.
 
-## 安装
+## Install
 
-**Claude Code（推荐）**：在 Claude Code 中运行
+**Claude Code (recommended)** — run inside Claude Code:
 
 ```
 /plugin install anti-defensive-anything --marketplace lyyi599/anti-defensive-anything
 ```
 
 <details>
-<summary>旧版 Claude Code（2.1.275 之前）</summary>
+<summary>Older Claude Code (before 2.1.275)</summary>
 
 ```
 /plugin marketplace add lyyi599/anti-defensive-anything
@@ -27,33 +27,33 @@
 ```
 </details>
 
-**Codex / 其他 Agent 工具**：
+**Codex / other agent tools**:
 
 ```bash
 git clone https://github.com/lyyi599/anti-defensive-anything.git
 cd anti-defensive-anything
-scripts/install.sh --target ~/.codex/skills   # 不加 --target 则装到 ~/.claude/skills
+scripts/install.sh --target ~/.codex/skills   # without --target, installs to ~/.claude/skills
 ```
 
-**网页版对话 / 不支持 skill 的工具**：把 [`prompts/quick-prompt.md`](prompts/quick-prompt.md) 粘贴到对话开头。
+**Web chat / tools without skill support**: paste [`prompts/quick-prompt.md`](prompts/quick-prompt.md) at the start of the conversation.
 
-> skill 正文用中文写成，对英文请求同样有效（与完整翻译的英文版 skill 做过对比评估，没有体现出英文版更好）；回复语言跟随你提问的语言。
+> The skills are written in English and trigger on both English and Chinese requests; replies follow the language you write in.
 
-## 使用
+## Usage
 
-装好后正常提需求即可，会按场景自动生效：
+Just ask as usual; the matching skill kicks in automatically:
 
-| 场景 | 例如这样说 |
+| Scenario | Say something like |
 |---|---|
-| 写作 | "帮我润色这段摘要""写 rebuttal""改一下简历" |
-| 编码 | "重构这个模块""review 这段代码""清理一下过度防御" |
-| 想法 | "围绕 X 头脑风暴几个研究 idea" |
-| 建议 | "PostgreSQL 还是 MongoDB？""直说，这个方案行不行" |
-| 执行 | "直接做完，别老问我" |
+| Writing | "Polish this abstract", "Draft the rebuttal", "Tighten my resume" |
+| Coding | "Refactor this module", "Review this code", "Remove the over-defensive checks" |
+| Ideation | "Brainstorm research ideas around X" |
+| Advice | "PostgreSQL or MongoDB?", "Be blunt — will this design work?" |
+| Agent tasks | "Just finish it, don't keep checking in" |
 
-任何场景里觉得 AI 又开始含糊了，说一句"别那么防御"即可。
+Whenever the AI starts hedging again, say "stop being defensive".
 
-## 致谢与相关项目
+## Acknowledgements & related projects
 
 - [Adkid-Zephyr/anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)
 - [wanshuiyin/HERO-Anti-OverDefense](https://github.com/wanshuiyin/HERO-Anti-OverDefense)
@@ -64,4 +64,4 @@ scripts/install.sh --target ~/.codex/skills   # 不加 --target 则装到 ~/.cla
 
 ## License
 
-MIT · 想修改规则或新增场景，见 [README_dev.md](README_dev.md)
+MIT · To change rules or add a scenario, see [README_dev.md](README_dev.md)

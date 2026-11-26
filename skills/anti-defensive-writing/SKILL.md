@@ -1,64 +1,64 @@
 ---
 name: anti-defensive-writing
-description: 去除写作中的防御性表达。用于论文（摘要、引言、实验、结论）、rebuttal/审稿回复、技术报告、简历、求职信、基金/项目申请书、商业计划书、正式邮件的撰写与润色。触发：改论文、润色、写摘要、写 rebuttal、改简历、写申请书、语气太弱、太谦虚、polish paper、tighten prose、rebuttal、cover letter。
+description: Remove defensive language from writing. Use for writing and polishing papers (abstract, introduction, experiments, conclusion), rebuttals / reviewer responses, technical reports, resumes, cover letters, grant/project proposals, business plans, and formal emails. Triggers: polish paper, tighten prose, rebuttal, cover letter, write abstract, edit resume, too weak, too modest, 改论文、润色、写摘要、写 rebuttal、改简历、写申请书、语气太弱、太谦虚。
 ---
 
 # Anti-Defensive Writing
 
-前置：遵循 `anti-defensive` 的通用原则与诚实底线（同级目录 `../anti-defensive/SKILL.md`）。
+Prerequisite: follow the core principles and honesty floor of `anti-defensive` (sibling directory `../anti-defensive/SKILL.md`).
 
-> **文章是发布会，不是工作汇报。** 只围绕你最强的那个优势组织全文。
+> **A paper is a product launch, not a progress report.** Organize the whole piece around your single strongest advantage.
 
-## 防御信号
+## Defensive signals
 
-- 自我削弱："遗憾的是""必须承认""效果有限""仍明显落后""初步探索"
-- 汇报式结构："我们先试了 A，再试了 B，最后选了 C"
-- 结果仓库：堆满所有实验，没有一个承担明确论证职责
-- 结尾突然自我否定：结论段最后一句写满局限
-- 预防性辩护：正文里替审稿人还没提的问题提前道歉
+- Self-undermining: "unfortunately", "we must admit", "limited effect", "still clearly behind", "preliminary exploration"
+- Report-style structure: "we first tried A, then B, and finally chose C"
+- Results warehouse: every experiment piled in, none carrying a clear argumentative job
+- Sudden self-negation at the end: the last sentence of the conclusion is full of limitations
+- Pre-emptive defense: apologizing in the main text for problems reviewers haven't raised
 
-## 规则
+## Rules
 
-**叙事**
-1. 全文只服务一个核心主张。与之无关的内容移到附录或删掉。
-2. 打不赢的维度不设为比赛：不主动把自己放进劣势比较里。
-3. 优势要明说，带数字："提升 12.3%"，不是"有一定提升"。
-4. 允许重构故事：如果最强的结果不在原来的主线上，换主线。
+**Narrative**
+1. The whole piece serves one core claim. Move anything unrelated to the appendix or delete it.
+2. Don't set up contests you can't win: don't volunteer yourself into unfavorable comparisons.
+3. State advantages explicitly, with numbers: "improves by 12.3%", not "some improvement".
+4. Restructuring the story is allowed: if the strongest result isn't on the original storyline, change the storyline.
 
-**语言**
-5. 不占优的结果不说"输"，陈述事实即可："与 B 相当""在 X 设置下 B 更高"。
-6. 局部现象不上升为对方法的整体否定。
-7. 删掉"我们认为""在一定程度上""值得注意的是"等不改变含义的缓冲词。
+**Language**
+5. Don't call a non-winning result a "loss"; state the fact: "on par with B", "B is higher under setting X".
+6. Don't escalate a local phenomenon into a verdict on the whole method.
+7. Delete buffer phrases that don't change the meaning: "we believe", "to some extent", "it is worth noting".
 
-**实验**
-8. 每个实验回答一个问题：它证明了主张的哪一部分？答不出来就移走。
+**Experiments**
+8. Every experiment answers one question: which part of the claim does it prove? If you can't say, move it out.
 
-**结构**
-9. 摘要/引言 = 开场：问题为什么重要 → 现有方法缺什么 → 我们做了什么 → 证据。
-10. 结论只强化记忆点：解决了什么、证明了什么、为什么重要。局限放在独立小节，用事实句。
+**Structure**
+9. Abstract/introduction = the launch opening: why the problem matters → what existing methods lack → what we did → evidence.
+10. The conclusion only reinforces what should be remembered: what was solved, what was shown, why it matters. Limitations go in their own subsection, as factual sentences.
 
-## 分场景要点
+## Scene notes
 
-- **Rebuttal**：
-  - 第一句就是回应本身：做了什么、结果是什么。**不以 "We thank / We appreciate / We apologize" 开头**；感谢最多半句，放在句中或省略。
-  - 新证据只支持它实际覆盖的范围：在同领域新数据集上的提升，只能说"在第三个同领域数据集上也成立"，不能说"在未见数据/新领域上也成立"。审稿人问的范围没被覆盖，就照实说没覆盖。
-  - 认同审稿人的合理点用一句话，然后说改了什么、在哪（节号/表号）。
-- **简历/求职信**：动词 + 结果 + 数字。删掉"参与了""协助"等稀释贡献的词，如果你确实是主导者。
-- **申请书/BP**：风险章节写"风险 → 应对"，不写成自我否定清单。
-- **邮件**：第一句写你要什么；删掉"不好意思打扰""如果方便的话不知道能否"。
+- **Rebuttal**:
+  - The first sentence is the response itself: what was done and what the result is. **Don't open with "We thank / We appreciate / We apologize"**; thanks are at most half a sentence, mid-sentence, or omitted.
+  - New evidence supports only the range it actually covers: a gain on another in-domain dataset only lets you say "it also holds on a third in-domain dataset", not "it holds on unseen data / new domains". If the range the reviewer asked about isn't covered, say plainly that it isn't.
+  - Agree with a reviewer's valid point in one sentence, then say what changed and where (section/table number).
+- **Resume / cover letter**: verb + result + number. Delete contribution-diluting words like "participated in" or "assisted" if you actually led the work.
+- **Proposals / business plans**: write the risk section as "risk → mitigation", not as a list of self-negations.
+- **Email**: the first sentence says what you want; delete "sorry to bother you" and "if it's convenient, I wonder whether".
 
-## 对照
+## Before / after
 
-| 防御性 | 反防御 |
+| Defensive | Anti-defensive |
 |---|---|
-| 虽然本方法在两个数据集上提高了准确率，但必须承认，我们尚未测试跨领域泛化，因此应谨慎看待。 | 本方法在两个同领域数据集上提高了准确率；跨领域泛化尚未评估。 |
-| 我们的方法在速度上仍明显落后于 B。 | 本方法以 1.8× 推理时间换取 6.1 点精度提升。 |
+| Although our method improves accuracy on two datasets, we must admit that we have not tested cross-domain generalization, so the results should be viewed with caution. | Our method improves accuracy on two in-domain datasets; cross-domain generalization has not been evaluated. |
+| Our method is still clearly behind B in speed. | Our method trades 1.8× inference time for a 6.1-point accuracy gain. |
 | We apologize for the confusion and thank the reviewer for pointing this out. We acknowledge that... | We clarified this in Sec. 3.2 (new Eq. 4). |
 | We thank the reviewer for this valuable suggestion. Results on ADE20K (+2.4 mIoU) demonstrate that our method generalizes to new domains. | On ADE20K our method gains +2.4 mIoU, so the improvement holds on a second scene-parsing benchmark. Transfer to other domains (e.g., medical images) is untested; we note this in Sec. 6. |
-| 参与了推荐系统的优化工作，取得了一定效果。 | 重写召回模块，线上 CTR +4.2%。 |
+| Participated in optimizing the recommendation system, with some positive results. | Rewrote the retrieval module; online CTR +4.2%. |
 
-## 必须保留
+## Must keep
 
-- 真实存在且会影响结论可信度的局限（用事实句写在局限小节）。
-- 与强基线的公平比较——"不设比赛"指不主动制造劣势叙事，不是隐藏标准基线。
-- 简历中不得把参与写成主导。
+- Real limitations that affect how credible the conclusion is (as factual sentences in the limitations subsection).
+- Fair comparison with strong baselines — "don't set up contests" means don't volunteer a losing narrative, not hide standard baselines.
+- On a resume, never present participation as leadership.

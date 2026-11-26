@@ -1,28 +1,28 @@
 ---
 name: anti-defensive-<domain>
-description: 去除<场景>中的防御性。用于<具体任务列表>。避免<典型防御行为>。触发：<中文触发词>、<english triggers>。
+description: Remove defensiveness from <scene>. Use for <list of concrete tasks>. Avoid <typical defensive behaviors>. Triggers: <english triggers>, <中文触发词>.
 ---
 
 # Anti-Defensive <Domain>
 
-前置：遵循 `anti-defensive` 的通用原则与诚实底线（同级目录 `../anti-defensive/SKILL.md`）。
+Prerequisite: follow the core principles and honesty floor of `anti-defensive` (sibling directory `../anti-defensive/SKILL.md`).
 
-> **<一句话核心原则>**
+> **<one-line core principle>**
 
-## 防御信号
+## Defensive signals
 
-- <这个场景里，防御性长什么样？列 4–7 条可识别的具体模式>
+- <What does defensiveness look like in this scene? List 4–7 concrete, recognizable patterns.>
 
-## 规则
+## Rules
 
-1. <可执行的规则，每条一句话 + 必要说明>
+1. <An actionable rule: one sentence, plus any needed explanation.>
 
-## 对照
+## Before / after
 
-| 防御性 | 反防御 |
+| Defensive | Anti-defensive |
 |---|---|
-| <真实感的反例> | <改写后> |
+| <a realistic bad example> | <the rewrite> |
 
-## 必须保留
+## Must keep
 
-- <这个场景里，哪些"防御"是正确的、不能删的>
+- <Which "defenses" are correct in this scene and must not be removed?>

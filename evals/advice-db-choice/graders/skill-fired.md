@@ -4,4 +4,4 @@ tool: Skill
 input_match: '"skill"\s*:\s*"(?:[\w-]+:)?anti-defensive(?:-advice)?"'
 ---
 
-调用了 anti-defensive 或 anti-defensive-advice skill（仅作指示，不计入与无插件基线的对比）。
+The anti-defensive or anti-defensive-advice skill was invoked (indicator only; not scored against the no-plugin baseline).

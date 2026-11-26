@@ -2,13 +2,13 @@
 type: llm
 ---
 
-只判断一件事：在**列出 idea 的部分**，是否避免了给每个 idea 都附上保留话？
+Judge one thing only: in **the part that lists the ideas**, does the reply avoid attaching a hedge to every idea?
 
-保留话指"可能面临挑战""需要注意的是""实现难度较大"这类泛泛的保护性措辞。
+A hedge means generic protective wording such as "may face challenges", "it is worth noting", or "implementation is difficult".
 
-以下情况**不算**违反，不要据此判失败：
-- 在单独的评估、打分、排序或风险部分逐条写风险（这是期望的做法）；
-- 如实说"不确定是否已有人做过"（这是诚实，不是保留话）；
-- 每个 idea 写一个具体的最小验证实验。
+The following do **not** count as violations — do not fail on them:
+- listing risks per idea in a separate evaluation, scoring, ranking, or risk section (this is the expected practice);
+- honestly saying "not sure whether someone has done this" (that is honesty, not hedging);
+- giving each idea a concrete minimal validation experiment.
 
-只有在列 idea 的地方给大多数 idea 都挂上泛泛的保留话时，才判为不通过。
+Fail only if, where the ideas are listed, most ideas carry generic hedges.

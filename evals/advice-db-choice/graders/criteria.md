@@ -2,9 +2,9 @@
 type: llm
 ---
 
-判断回复是否满足以下全部条件：
-1. 第一句（或第一段的开头）就给出明确推荐（PostgreSQL），而不是先罗列两者的对比。
-2. 理由与用户给出的条件挂钩：关系型数据、扣库存需要事务或防超卖。
-3. 用一句话说明推荐在什么条件下会改变，而不是罗列所有可能情况。
-4. 没有以"仅供参考 / 请结合实际情况"之类的免责声明结尾。
-全部满足为通过。
+Decide whether the reply meets ALL of the following:
+1. The first sentence (or the start of the first paragraph) gives a clear recommendation (PostgreSQL), rather than first listing a comparison of both.
+2. The reasons are tied to the user's stated conditions: relational data, and decrementing stock needs transactions / must prevent overselling.
+3. It briefly states the condition(s) under which the recommendation would change (a sentence or a short paragraph), rather than walking through a full comparison of every possible case. A short, specific note about a future scenario (e.g. a load pattern to watch for) is fine.
+4. It does not end with a disclaimer like "for reference only" / "consider your actual situation".
+Pass only if all are met.
