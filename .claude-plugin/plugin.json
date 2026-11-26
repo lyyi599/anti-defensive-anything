@@ -1,6 +1,6 @@
 {
   "name": "anti-defensive-anything",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Stop AI from writing to avoid blame: one common principle + router, with domain skills for writing, coding, ideation, advice and agent behavior.",
   "author": { "name": "lyyi599" },
   "homepage": "https://github.com/lyyi599/anti-defensive-anything",
