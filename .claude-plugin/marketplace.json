@@ -1,6 +1,9 @@
 {
   "name": "lyyi599-anti-defensive",
-  "owner": { "name": "lyyi599" },
+  "owner": {
+    "name": "lyyi599"
+  },
+  "description": "Anti-defensive Agent Skills: stop AI from writing to avoid blame.",
   "plugins": [
     {
       "name": "anti-defensive-anything",
