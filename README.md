@@ -42,15 +42,6 @@ Papers that apologize before reviewers say a word. Rebuttals that open with thre
 </tr>
 </table>
 
-Measured with `claude plugin eval` (3 runs per arm, Chinese prompts):
-
-| Case | Check | With skills | Without |
-|---|---|:---:|:---:|
-| Rebuttal | Opens with the response, not thanks | **3/3** | 0/3 |
-| Rebuttal | Keeps the untested limitation | **3/3** | 1/3 |
-| Conclusion | Ends on the takeaway | **3/3** | 0/3 |
-| Research ideas | At least one non-incremental idea | **3/3** | 0/3 |
-
 ## Install
 
 **Claude Code (recommended)**: run inside Claude Code

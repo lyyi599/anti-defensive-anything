@@ -7,7 +7,7 @@ Rule changes change model behavior, so every entry says **which scene and what b
 ## [Unreleased]
 
 ### Changed
-- **README redesign**: centered header with logo, badges (CI, version, license), quick nav, a before/after table, and the eval results; install options for other tools folded into `<details>`. The translator now rewrites in-page anchors to the translated headings.
+- **README redesign**: centered header with logo, badges (CI, version, license), quick nav, and a before/after table; install options for other tools folded into `<details>`. The translator now rewrites in-page anchors to the translated headings.
 - **Focus on three core components**: `anti-defensive` (core), `anti-defensive-writing`, `anti-defensive-ideation`. All three were rewritten to a short, scannable format modeled on lean community skills: principle → why → numbered rules → quick checks → before/after → must keep (core 34 lines, writing 58, ideation 68). Ideation gained a calibration list of the idea clusters models default to; writing gained a quick-check list of concrete phrases to remove and a "return" contract.
 
 - `writing`: new rule 8, "End on the takeaway": the last sentence of a conclusion, abstract, or reply says what the result means; limitations and future work go before it. The new `writing-conclusion` case showed the skill still let conclusions end on future work (1/3); after the rule, 3/3 (baseline 0/3).
