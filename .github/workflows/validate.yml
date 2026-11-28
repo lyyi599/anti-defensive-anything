@@ -12,6 +12,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Repository consistency
         run: python3 scripts/validate.py
+      - name: Plugin manifests
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .
       - name: Shell script syntax
         run: bash -n scripts/install.sh
       - name: Install script smoke test

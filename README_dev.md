@@ -11,9 +11,10 @@ skills/
 ├── anti-defensive/            # core rules + router + honesty floor
 ├── anti-defensive-writing/    # papers, rebuttals, reports, resumes, emails
 └── anti-defensive-ideation/   # brainstorming, research ideas
-evals/                         # eval cases (claude plugin eval)
+evals/                         # eval cases (claude plugin eval); baseline.json = last accepted scores
+evals-holdout/                 # held-out English cases, run only before a release
 prompts/quick-prompt.md        # paste-in prompt for tools without skills
-scripts/                       # install.sh, validate.py, translate.py
+scripts/                       # install.sh, validate.py, translate.py, eval_compare.py
 assets/                        # logo; src/gen_logo.py generates it
 .claude-plugin/                # plugin + marketplace manifests
 README_CN.md, prompts/quick-prompt-zh.md   # generated Chinese versions
@@ -48,11 +49,11 @@ scripts/install.sh --link --target ./.claude/skills   # project-level
 ## Checks
 
 ```bash
-python3 scripts/validate.py     # structure, routing table, versions, CHANGELOG, eval coverage; warns on stale translations
+python3 scripts/validate.py     # structure, routing table, versions, CHANGELOG, eval coverage, relative links; warns on stale translations
 claude plugin validate .        # plugin + marketplace manifests
 ```
 
-CI runs `validate.py` and an install smoke test on every push and PR.
+CI runs both, plus an install smoke test, on every push and PR. Evals are not in CI: each run costs real money and has run-to-run noise, so run them locally when `skills/` changes.
 
 ## Evals
 
@@ -65,8 +66,20 @@ evals/writing-rebuttal/
 ```
 
 ```bash
-claude plugin eval . --case 'writing-*' --judge-model sonnet   # 3 runs per case plus a no-plugin baseline
+claude plugin eval . --case 'writing-*' --judge-model sonnet --no-publish --json out.json   # 3 runs per case plus a no-plugin baseline
+python3 scripts/eval_compare.py out.json                       # compare with evals/baseline.json, flag regressions
+python3 scripts/eval_compare.py out.json --update              # accept the new scores as the baseline (commit it)
 ```
+
+Three kinds of cases:
+
+| Kind | Where | Checks | When to run |
+|---|---|---|---|
+| Scene cases | `evals/<scene>-*` | the skill changes behavior vs the no-plugin baseline | after changing that scene's skill |
+| Negative cases | `evals/negative-*` | the skills do **not** fire on requests that only look similar (translate, summarize), and the output keeps the source's hedges | after changing any `description` |
+| Held-out cases | `evals-holdout/` | the same scenes, in English, on topics never used for tuning | before a release only (`--eval-dir evals-holdout`); never tune rules against them |
+
+A drop of one run out of three is within noise; `eval_compare.py` flags a grader only when it drops by more than that (or a guard drops at all). If a check flags, read the failing outputs before deciding.
 
 - Case prompts are in **Chinese** on purpose, to check that the English skills work for Chinese-speaking users. Rubrics are English.
 - Needs git ≥ 2.31 (a user-space git via micromamba works). Results go to `evals/results/` (gitignored). Add `--no-publish` to keep reports local.
@@ -82,7 +95,7 @@ Lessons from auditing the rubrics. Each of these once produced a fake or inflate
 - **Test the intent, not a hard count** (e.g. not "in one sentence").
 - **Split results by whether the skill fired.** A skill that didn't trigger behaves like the baseline; that's a trigger problem, not a rule problem.
 - **Judge with sonnet.** The default haiku splits votes on long outputs.
-- **Must-keep graders are guards, not discriminators.** Both arms should pass them; if the baseline fails one, check whether the regex is too narrow before believing it. Test every regex against real past outputs (honest and dishonest wordings) before running.
+- **Must-keep graders are guards, not discriminators.** Both arms should pass them; if the baseline fails one, check whether the regex is too narrow before believing it. Test every regex against real past outputs (honest and dishonest wordings) before running. Guard regexes have missed honest wordings three times ("open question", "covers only read speech", "did not evaluate"): when a guard fails, read the output first.
 - **Judges are swayed by self-applied labels** ("contrarian", "moonshot"). Tell the judge to ignore them and judge the content.
 
 Issues filed with the "defensive case" template can be turned directly into a `prompt.md` and graders.
@@ -105,6 +118,11 @@ Change `PARAMS` in `assets/src/gen_logo.py`, then run it (PNGs need Pillow).
 
 ## Releasing
 
-1. In `CHANGELOG.md`, turn `[Unreleased]` into the version and date, and describe each scene's behavior change.
-2. Bump `version` in both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
-3. After the checks and evals pass, commit and push to `main`.
+1. Run the scene, negative, and held-out evals; compare with the baseline.
+2. In `CHANGELOG.md`, turn `[Unreleased]` into the version and date, and describe each scene's behavior change.
+3. Bump `version` in both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
+4. Commit, push to `main`, then tag: `git tag v0.3.0 && git push origin v0.3.0`. The `release` workflow checks the tag matches `plugin.json` and publishes a GitHub Release with that version's CHANGELOG section.
+
+## Contributing
+
+Pull requests use the checklist in `.github/pull_request_template.md`. `main` is protected by a GitHub ruleset that requires the `validate` check to pass.

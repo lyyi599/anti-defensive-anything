@@ -7,7 +7,8 @@ Checks:
   3. the routing table and the scene skill directories match one-to-one
   4. plugin.json and marketplace.json versions match, and CHANGELOG has that version
   5. stale translations (warning only, never fails): see scripts/translate.py
-  6. every scene has at least one eval case (evals/<scene>-*/)
+  6. every scene has at least one eval case (evals/<scene>-*/); every case has prompt.md and graders
+  7. relative links in Markdown files point to files that exist
 """
 import json
 import re
@@ -77,6 +78,26 @@ for name in sorted(domains):
     short = name[len(COMMON) + 1:]
     if not any(evals.glob(f"{short}-*/prompt.md")):
         errors.append(f"scene {short} has no eval case (evals/{short}-*/prompt.md)")
+
+for case in sorted(p for d in ("evals", "evals-holdout") if (REPO / d).is_dir() for p in (REPO / d).iterdir() if p.is_dir() and p.name != "results"):
+    rel = case.relative_to(REPO)
+    if not (case / "prompt.md").exists():
+        errors.append(f"{rel}: missing prompt.md")
+    if not any(case.glob("graders/*.md")):
+        errors.append(f"{rel}: no graders")
+
+# 7. relative links
+LINK_RE = re.compile(r"\]\(([^)\s]+)\)|href=\"([^\"]+)\"|src=\"([^\"]+)\"")
+for md in sorted(REPO.rglob("*.md")):
+    rel = md.relative_to(REPO)
+    if rel.parts[0].startswith(".git") and rel.parts[0] != ".github" or "results" in rel.parts:
+        continue
+    for m in LINK_RE.finditer(md.read_text(encoding="utf-8")):
+        target = next(g for g in m.groups() if g).split("#")[0]
+        if not target or re.match(r"[a-z]+:", target):
+            continue  # in-page anchor, URL, or mailto
+        if not (md.parent / target).exists():
+            errors.append(f"{rel}: broken link {target}")
 
 for w in warnings:
     print(f"⚠ {w}")

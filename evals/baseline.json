@@ -1,0 +1,162 @@
+{
+  "cases": {
+    "ideation-en": {
+      "graders": {
+        "bold-idea": {
+          "with": 3,
+          "without": 0
+        },
+        "no-fabrication": {
+          "with": 3,
+          "without": 3
+        },
+        "skill-fired": {
+          "with": 3,
+          "without": null
+        },
+        "top-pick": {
+          "with": 3,
+          "without": 3
+        }
+      },
+      "runs": 3
+    },
+    "ideation-research": {
+      "graders": {
+        "bold-idea": {
+          "with": 3,
+          "without": 0
+        },
+        "list-no-hedge": {
+          "with": 3,
+          "without": 3
+        },
+        "no-defensive-phrases": {
+          "with": 3,
+          "without": 3
+        },
+        "no-fabrication": {
+          "with": 3,
+          "without": 3
+        },
+        "skill-fired": {
+          "with": 3,
+          "without": null
+        },
+        "top-pick": {
+          "with": 3,
+          "without": 3
+        }
+      },
+      "runs": 3
+    },
+    "negative-summarize": {
+      "graders": {
+        "keeps-scope": {
+          "with": 3,
+          "without": 3
+        },
+        "not-fired": {
+          "with": 3,
+          "without": null
+        }
+      },
+      "runs": 3
+    },
+    "negative-translate": {
+      "graders": {
+        "keeps-hedges": {
+          "with": 3,
+          "without": 3
+        },
+        "not-fired": {
+          "with": 3,
+          "without": null
+        }
+      },
+      "runs": 3
+    },
+    "writing-abstract-en": {
+      "graders": {
+        "keeps-limitation": {
+          "with": 3,
+          "without": 3
+        },
+        "keeps-numbers": {
+          "with": 3,
+          "without": 3
+        },
+        "no-subtle-hedges": {
+          "with": 3,
+          "without": 3
+        },
+        "opens-with-contribution": {
+          "with": 3,
+          "without": 3
+        },
+        "skill-fired": {
+          "with": 3,
+          "without": null
+        }
+      },
+      "runs": 3
+    },
+    "writing-conclusion": {
+      "graders": {
+        "ends-on-takeaway": {
+          "with": 3,
+          "without": 0
+        },
+        "keeps-limitation": {
+          "with": 3,
+          "without": 3
+        },
+        "keeps-number": {
+          "with": 3,
+          "without": 3
+        },
+        "no-defensive-phrases": {
+          "with": 3,
+          "without": 3
+        },
+        "skill-fired": {
+          "with": 3,
+          "without": null
+        }
+      },
+      "runs": 3
+    },
+    "writing-rebuttal": {
+      "graders": {
+        "keeps-limitation": {
+          "with": 3,
+          "without": 1
+        },
+        "keeps-number": {
+          "with": 3,
+          "without": 3
+        },
+        "no-defensive-phrases": {
+          "with": 3,
+          "without": 3
+        },
+        "no-overclaim": {
+          "with": 3,
+          "without": 3
+        },
+        "opens-with-response": {
+          "with": 3,
+          "without": 0
+        },
+        "skill-fired": {
+          "with": 3,
+          "without": null
+        }
+      },
+      "runs": 3
+    }
+  },
+  "claudeVersion": "2.1.332",
+  "judgeModel": "sonnet",
+  "updated": "2026-11-27"
+}
