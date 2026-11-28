@@ -125,4 +125,4 @@ Change `PARAMS` in `assets/src/gen_logo.py`, then run it (PNGs need Pillow).
 
 ## Contributing
 
-Pull requests use the checklist in `.github/pull_request_template.md`. `main` is protected by a GitHub ruleset that requires the `validate` check to pass.
+Pull requests use the checklist in `.github/pull_request_template.md`. `main` is protected by a GitHub ruleset: the `validate` check must pass, force pushes and deletion are blocked. Repository admins are on the bypass list and can push directly.
